@@ -5,7 +5,7 @@ import (
 )
 
 type RepositoryManager interface {
-	// ProductRepo Disini kumpulan semua repo dalam 1 project yang dibuat
+	// Disini kumpulan semua repo dalam 1 project yang dibuat
 	BillRepo() repository.BillRepository
 	CustomerRepo() repository.CustomerRepository
 	DiscountRepo() repository.DiscountRepository

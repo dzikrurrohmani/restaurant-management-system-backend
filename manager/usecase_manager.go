@@ -12,6 +12,7 @@ import (
 )
 
 type UseCaseManager interface {
+	// Jika ada kesempatan akan di refactor supaya bisa dipisahkan usecasenya dan tidak sebanyak ini
 	CreateDiscountUseCase() discount_usecase.CreateDiscountUseCase
 	ReadDiscountUseCase() discount_usecase.ReadDiscountUseCase
 	UpdateDiscountUseCase() discount_usecase.UpdateDiscountUseCase
