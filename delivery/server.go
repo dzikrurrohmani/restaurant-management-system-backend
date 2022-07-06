@@ -2,6 +2,7 @@ package delivery
 
 import (
 	"livecode-wmb-rest-api/config"
+	"livecode-wmb-rest-api/delivery/controller"
 	"livecode-wmb-rest-api/manager"
 
 	"github.com/gin-gonic/gin"
@@ -28,7 +29,8 @@ func Server() *appServer {
 }
 
 func (a *appServer) initControllers() {
-	controller.NewProductController(a.engine, a.useCaseManager.CreateProductUseCase(), a.useCaseManager.ListProductUseCase())
+	// controller.NewProductController(a.engine, a.useCaseManager.Cre, a.useCaseManager.ListProductUseCase())
+	controller.NewMenuController(a.engine, a.useCaseManager.CreateMenuUseCase(), a.useCaseManager.ReadMenuUseCase(), a.useCaseManager.UpdateMenuUseCase(), a.useCaseManager.DeleteMenuUseCase())
 }
 
 func (a *appServer) Run() {

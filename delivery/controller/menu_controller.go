@@ -6,6 +6,7 @@ import (
 	menu_usecase "livecode-wmb-rest-api/usecase/menu"
 	"livecode-wmb-rest-api/utils"
 
+	"github.com/fatih/structs"
 	"github.com/gin-gonic/gin"
 )
 
@@ -56,53 +57,62 @@ func (p *MenuController) updateMenu(c *gin.Context) {
 		return
 	}
 	// melakukan update
-	updatedMenuMap := structs.Map(updatedMenu)
-	p.ucMenuUpdate.UpdateMenu(&menuwithID, map[string]interface{})
-
-	err = p.ucMenu.CreateMenu(&updatedMenu)
+	updatedMenuMap := structs.Map(updatedMenu.MenuName)
+	err = p.ucMenuUpdate.UpdateMenu(&menuwithID, updatedMenuMap)
 	if err != nil {
 		p.Failed(c, err)
 		return
 	}
 	p.Success(c, updatedMenu)
-	// // Misal ganti nama
-	// UpdateMenuUseCase := usecase.NewUpdateMenuUseCase(menuRepo)
-	// UpdateMenuUseCase.UpdateMenu(&menuwithID, map[string]interface{}{"menu_name": "Nasi Liwet"})
-
-	// // Dicetak kembali untuk dicek apakah sudah berubah
-	// menuwithID, err = ReadMenuUseCase.ReadMenuById(3)
-	// utils.RaiseError(err)
-	// log.Println(menuwithID)
 }
 
 func (p *MenuController) deleteMenu(c *gin.Context) {
-	var newMenu model.Menu
-	err := p.ParseRequestBody(c, &newMenu)
+	var deletedMenu model.Menu
+	err := p.ParseRequestBody(c, &deletedMenu)
 	if err != nil {
 		p.Failed(c, utils.RequiredError())
 		return
 	}
-	err = p.ucMenu.CreateMenu(&newMenu)
+	// cari menu yg ingin diupdate
+	menuwithID, err := p.ucMenuRead.ReadMenuById(deletedMenu.BaseModel.ID)
 	if err != nil {
 		p.Failed(c, err)
 		return
 	}
-	p.Success(c, newMenu)
+	err = p.ucMenuDelete.DeleteMenu(&menuwithID)
+	if err != nil {
+		p.Failed(c, err)
+		return
+	}
+	p.Success(c, deletedMenu)
+	// 	menuwithID, err := ReadMenuUseCase.ReadMenuById(3)
+	// 	utils.RaiseError(err)
+	// 	log.Println(menuwithID)
+
+	// 	// Proses delete dilakukan
+	// 	DeleteMenuUseCase := usecase.NewDeleteMenuUseCase(menuRepo)
+	// 	DeleteMenuUseCase.DeleteMenu(&menuwithID)
 }
 
 func NewMenuController(
 	router *gin.Engine,
-	ucMenu usecase.CreateMenuUseCase,
-	ucMenuList usecase.ListMenuUseCase) *MenuController {
+	ucMenuCreate menu_usecase.CreateMenuUseCase,
+	ucMenuRead menu_usecase.ReadMenuUseCase,
+	ucMenuUpdate menu_usecase.UpdateMenuUseCase,
+	ucMenuDelete menu_usecase.DeleteMenuUseCase) *MenuController {
 	// Disini akan terdapat kumpulan semua request method yang dibutuhkan
 	controller := MenuController{
-		router:     router,
-		ucMenu:     ucMenu,
-		ucMenuList: ucMenuList,
+		router:       router,
+		ucMenuCreate: ucMenuCreate,
+		ucMenuRead:   ucMenuRead,
+		ucMenuUpdate: ucMenuUpdate,
+		ucMenuDelete: ucMenuDelete,
 	}
 
 	// ini method-method nya
-	router.POST("/Menu", controller.createNewMenu)
-	router.GET("/Menu", controller.findAllMenu)
+	router.POST("/menu", controller.createNewMenu)
+	router.GET("/menu", controller.findAllMenu)
+	router.PUT("/menu", controller.updateMenu)
+	router.DELETE("/menu", controller.deleteMenu)
 	return &controller
 }
