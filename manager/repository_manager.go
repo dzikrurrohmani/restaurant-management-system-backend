@@ -13,6 +13,7 @@ type RepositoryManager interface {
 	MenuRepo() repository.MenuRepository
 	TableRepo() repository.TableRepository
 	TransTypeRepo() repository.TransTypeRepository
+	BillDetailRepo() repository.BillDetailRepository
 }
 
 type repositoryManager struct {
@@ -45,6 +46,10 @@ func (r *repositoryManager) TableRepo() repository.TableRepository {
 
 func (r *repositoryManager) TransTypeRepo() repository.TransTypeRepository {
 	return repository.NewTransTypeRepository(r.infra.SqlDb())
+}
+
+func (r *repositoryManager) BillDetailRepo() repository.BillDetailRepository {
+	return repository.NewBillDetailRepository(r.infra.SqlDb())
 }
 
 func NewRepositoryManager(infra Infra) RepositoryManager {

@@ -36,6 +36,7 @@ func (a *appServer) initControllers() {
 	controller.NewTransTypeController(a.engine, a.useCaseManager.CreateTransTypeUseCase(), a.useCaseManager.ReadTransTypeUseCase(), a.useCaseManager.UpdateTransTypeUseCase(), a.useCaseManager.DeleteTransTypeUseCase())
 	controller.NewCustomerController(a.engine, a.useCaseManager.CustomerRegistrationUseCase(), a.useCaseManager.MemberActivationUseCase())
 	controller.NewBillController(a.engine, a.useCaseManager.CustomerOrderUseCase(), a.useCaseManager.CustomerPaymentUseCase())
+	controller.NewBillDetailController(a.engine, a.useCaseManager.GetIncomeUseCase())
 }
 
 func (a *appServer) Run() {

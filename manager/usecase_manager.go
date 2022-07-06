@@ -2,6 +2,7 @@ package manager
 
 import (
 	bill_usecase "livecode-wmb-rest-api/usecase/bill"
+	billdetail_usecase "livecode-wmb-rest-api/usecase/bill_detail"
 	customer_usecase "livecode-wmb-rest-api/usecase/customer"
 	discount_usecase "livecode-wmb-rest-api/usecase/discount"
 	menu_usecase "livecode-wmb-rest-api/usecase/menu"
@@ -34,7 +35,8 @@ type UseCaseManager interface {
 	CustomerRegistrationUseCase() customer_usecase.CustomerRegistrationUseCase
 	MemberActivationUseCase() customer_usecase.MemberActivationUseCase
 	CustomerOrderUseCase() bill_usecase.CustomerOrderUseCase
-	CustomerPaymentUseCase() bill_usecase.CustomerPaymentUseCase 
+	CustomerPaymentUseCase() bill_usecase.CustomerPaymentUseCase
+	GetIncomeUseCase() billdetail_usecase.GetIncomeUseCase
 }
 
 type useCaseManager struct {
@@ -130,8 +132,12 @@ func (u *useCaseManager) MemberActivationUseCase() customer_usecase.MemberActiva
 func (u *useCaseManager) CustomerOrderUseCase() bill_usecase.CustomerOrderUseCase {
 	return bill_usecase.NewCustomerOrderUseCase(u.repoManager.BillRepo(), u.repoManager.TableRepo())
 }
-func (u *useCaseManager) CustomerPaymentUseCase() bill_usecase.CustomerPaymentUseCase  {
+func (u *useCaseManager) CustomerPaymentUseCase() bill_usecase.CustomerPaymentUseCase {
 	return bill_usecase.NewCustomerPaymentUseCase(u.repoManager.BillRepo(), u.repoManager.TableRepo())
+}
+
+func (u *useCaseManager) GetIncomeUseCase() billdetail_usecase.GetIncomeUseCase {
+	return billdetail_usecase.NewGetIncomeUseCase(u.repoManager.BillDetailRepo())
 }
 
 func NewUseCaseManager(repoManager RepositoryManager) UseCaseManager {
