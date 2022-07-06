@@ -1,15 +1,14 @@
 package model
 
 import (
-	"database/sql"
 	"encoding/json"
 	"errors"
 )
 
 type MenuPrice struct {
-	ID     uint `gorm:"primaryKey;autoIncrement"`
-	MenuID sql.NullInt64
-	Price  float32 `gorm:"not null"`
+	ID     uint    `gorm:"primaryKey;autoIncrement" json:"menupriceId"`
+	MenuID uint    `json:"menuId"`
+	Price  float32 `gorm:"not null" json:"price"`
 }
 
 func (MenuPrice) TableName() string {

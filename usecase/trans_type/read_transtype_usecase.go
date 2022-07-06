@@ -7,7 +7,7 @@ import (
 
 type ReadTransTypeUseCase interface {
 	ReadAllTransType() ([]model.TransType, error)
-	ReadTransTypeById(id uint) (model.TransType, error)
+	ReadTransTypeById(id string) (model.TransType, error)
 	ReadTransTypeBy(by map[string]interface{}) ([]model.TransType, error)
 }
 
@@ -19,7 +19,7 @@ func (m *readTransTypeUseCase) ReadAllTransType() ([]model.TransType, error) {
 	return m.transTypeRepo.FindAll()
 }
 
-func (m *readTransTypeUseCase) ReadTransTypeById(id uint) (model.TransType, error) {
+func (m *readTransTypeUseCase) ReadTransTypeById(id string) (model.TransType, error) {
 	transTypeSlice, err := m.transTypeRepo.FindBy(map[string]interface{}{"id": id})
 	if len(transTypeSlice) == 0 {
 		return model.TransType{}, err

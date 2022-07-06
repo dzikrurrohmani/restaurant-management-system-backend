@@ -8,7 +8,7 @@ import (
 )
 
 type MemberActivationUseCase interface {
-	ActivateMember(phoneNumber string) (model.Customer, error)
+	ActivateMember(phoneNumber string, discountId uint) (model.Customer, error)
 }
 
 type memberActivationUseCase struct {
@@ -16,7 +16,7 @@ type memberActivationUseCase struct {
 	discountRepo repository.DiscountRepository
 }
 
-func (m *memberActivationUseCase) ActivateMember(phoneNumber string) (model.Customer, error) {
+func (m *memberActivationUseCase) ActivateMember(phoneNumber string, discountId uint) (model.Customer, error) {
 	by := map[string]interface{}{"mobile_phone_no": phoneNumber}
 	customerSlice, err := m.custRepo.FindBy(by)
 	if err != nil {
@@ -35,7 +35,7 @@ func (m *memberActivationUseCase) ActivateMember(phoneNumber string) (model.Cust
 	}
 	fmt.Println("Aktivasi member berhasil.")
 	// Belum selesai tambah discount
-	discountSlice, _ := m.discountRepo.FindBy(map[string]interface{}{"id": 2})
+	discountSlice, _ := m.discountRepo.FindBy(map[string]interface{}{"id": discountId})
 	err = m.custRepo.UpdateAssociation(&customerSelected, "Discounts", &discountSlice[0])
 	if err != nil {
 		fmt.Println("gagal menambahkan previlledge discount")

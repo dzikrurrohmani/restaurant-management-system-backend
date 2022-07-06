@@ -29,9 +29,13 @@ func Server() *appServer {
 }
 
 func (a *appServer) initControllers() {
-	// controller.NewProductController(a.engine, a.useCaseManager.Cre, a.useCaseManager.ListProductUseCase())
 	controller.NewMenuController(a.engine, a.useCaseManager.CreateMenuUseCase(), a.useCaseManager.ReadMenuUseCase(), a.useCaseManager.UpdateMenuUseCase(), a.useCaseManager.DeleteMenuUseCase())
 	controller.NewMenuPriceController(a.engine, a.useCaseManager.CreateMenuPriceUseCase(), a.useCaseManager.ReadMenuPriceUseCase(), a.useCaseManager.UpdateMenuPriceUseCase(), a.useCaseManager.DeleteMenuPriceUseCase())
+	controller.NewDiscountController(a.engine, a.useCaseManager.CreateDiscountUseCase(), a.useCaseManager.ReadDiscountUseCase(), a.useCaseManager.UpdateDiscountUseCase(), a.useCaseManager.DeleteDiscountUseCase())
+	controller.NewTableController(a.engine, a.useCaseManager.CreateTableUseCase(), a.useCaseManager.ReadTableUseCase(), a.useCaseManager.UpdateTableUseCase(), a.useCaseManager.DeleteTableUseCase())
+	controller.NewTransTypeController(a.engine, a.useCaseManager.CreateTransTypeUseCase(), a.useCaseManager.ReadTransTypeUseCase(), a.useCaseManager.UpdateTransTypeUseCase(), a.useCaseManager.DeleteTransTypeUseCase())
+	controller.NewCustomerController(a.engine, a.useCaseManager.CustomerRegistrationUseCase(), a.useCaseManager.MemberActivationUseCase())
+	controller.NewBillController(a.engine, a.useCaseManager.CustomerOrderUseCase(), a.useCaseManager.CustomerPaymentUseCase())
 }
 
 func (a *appServer) Run() {

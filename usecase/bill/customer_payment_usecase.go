@@ -2,13 +2,13 @@ package bill_usecase
 
 import (
 	"fmt"
+	"livecode-wmb-rest-api/model"
 	"livecode-wmb-rest-api/repository"
-	"log"
 )
 
 type CustomerPaymentUseCase interface {
-	OrderPayment(billId uint) error
-	PrintBill(billId uint) error
+	OrderPayment(billId uint) (model.Bill, error)
+	PrintBill(billId uint) (model.Bill, error)
 }
 
 type customerPaymentUseCase struct {
@@ -16,36 +16,35 @@ type customerPaymentUseCase struct {
 	tableRepo repository.TableRepository
 }
 
-func (c *customerPaymentUseCase) PrintBill(billId uint) error {
+func (c *customerPaymentUseCase) PrintBill(billId uint) (model.Bill, error) {
 	billSlice, err := c.billRepo.FindBy(map[string]interface{}{"id": billId}, []string{"BillDetails", "BillDetails.MenuPrice"})
 	if err != nil {
 		fmt.Println("Informasi bill tidak ditemukan.")
-		return err
+		return model.Bill{}, err
 	}
-	log.Println(billSlice[0].ToString())
-	return nil
+	return billSlice[0], nil
 }
 
-func (c *customerPaymentUseCase) OrderPayment(billId uint) error {
+func (c *customerPaymentUseCase) OrderPayment(billId uint) (model.Bill, error) {
 	billSlice, err := c.billRepo.FindBy(map[string]interface{}{"id": billId}, nil)
 	if err != nil {
 		fmt.Println("Informasi bill tidak ditemukan.")
-		return err
+		return model.Bill{}, err
 	}
 	tableSlice, err := c.tableRepo.FindBy(map[string]interface{}{"id": billSlice[0].TableID})
 	if err != nil {
 		fmt.Println("Informasi meja dalam bill tidak ditemukan.")
-		return err
+		return model.Bill{}, err
 	}
 	tableSelected := tableSlice[0]
 	// Tidak perlu transactional karena yang diupdate hanya table
 	err = c.tableRepo.UpdateBy(&tableSelected, map[string]interface{}{"is_available": true})
 	if err != nil {
 		fmt.Println("Update informasi meja gagal dilakukan.")
-		return err
+		return model.Bill{}, err
 	}
-	c.PrintBill(billId)
-	return nil
+
+	return c.PrintBill(billId)
 }
 
 func NewCustomerPaymentUseCase(billRepo repository.BillRepository, tableRepo repository.TableRepository) CustomerPaymentUseCase {
