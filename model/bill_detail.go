@@ -6,7 +6,7 @@ import (
 )
 
 type BillDetail struct {
-	BaseModel   BaseModel `gorm:"embedded"`
+	ID uint `gorm:"primaryKey;autoIncrement"`
 	BillID      uint
 	MenuPriceID uint
 	Qty         float32

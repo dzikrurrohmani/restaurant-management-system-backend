@@ -6,9 +6,9 @@ import (
 )
 
 type Menu struct {
-	BaseModel  BaseModel `gorm:"embedded"`
-	MenuName   string    `gorm:"size:50;not null"`
-	MenuPrices []MenuPrice
+	ID         uint   `gorm:"primaryKey;autoIncrement" json:"menuId"`
+	MenuName   string `gorm:"size:50;not null" json:"menuName"`
+	MenuPrices []MenuPrice `json:"menuPrices"`
 }
 
 func (Menu) TableName() string {

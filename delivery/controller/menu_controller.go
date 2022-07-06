@@ -51,13 +51,13 @@ func (p *MenuController) updateMenu(c *gin.Context) {
 		return
 	}
 	// cari menu yg ingin diupdate
-	menuwithID, err := p.ucMenuRead.ReadMenuById(updatedMenu.BaseModel.ID)
+	menuwithID, err := p.ucMenuRead.ReadMenuById(updatedMenu.ID)
 	if err != nil {
 		p.Failed(c, err)
 		return
 	}
 	// melakukan update
-	updatedMenuMap := structs.Map(updatedMenu.MenuName)
+	updatedMenuMap := structs.Map(updatedMenu)
 	err = p.ucMenuUpdate.UpdateMenu(&menuwithID, updatedMenuMap)
 	if err != nil {
 		p.Failed(c, err)
@@ -74,7 +74,7 @@ func (p *MenuController) deleteMenu(c *gin.Context) {
 		return
 	}
 	// cari menu yg ingin diupdate
-	menuwithID, err := p.ucMenuRead.ReadMenuById(deletedMenu.BaseModel.ID)
+	menuwithID, err := p.ucMenuRead.ReadMenuById(deletedMenu.ID)
 	if err != nil {
 		p.Failed(c, err)
 		return

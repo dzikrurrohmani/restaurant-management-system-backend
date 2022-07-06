@@ -6,7 +6,7 @@ import (
 )
 
 type Customer struct {
-	BaseModel     BaseModel `gorm:"embedded"`
+	ID uint `gorm:"primaryKey;autoIncrement"`
 	CustomerName  string    `gorm:"size:50;not null"`
 	MobilePhoneNo string    `gorm:"unique; size:13"`
 	IsMember      bool      `gorm:"default:false"`

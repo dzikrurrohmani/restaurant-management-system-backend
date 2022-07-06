@@ -6,7 +6,7 @@ import (
 )
 
 type Discount struct {
-	BaseModel   BaseModel `gorm:"embedded"`
+	ID uint `gorm:"primaryKey;autoIncrement"`
 	Description string
 	Pct         uint
 	// Customers   []Customer `gorm:"many2many:m_customer_discount"`

@@ -7,7 +7,7 @@ import (
 )
 
 type Bill struct {
-	BaseModel   BaseModel `gorm:"embedded"`
+	ID uint `gorm:"primaryKey;autoIncrement"`
 	TransDate   time.Time
 	CustomerID  uint
 	TableID     uint

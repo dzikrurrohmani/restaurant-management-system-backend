@@ -6,7 +6,7 @@ import (
 )
 
 type Table struct {
-	BaseModel       BaseModel `gorm:"embedded"`
+	ID     uint `gorm:"primaryKey;autoIncrement"`
 	TableDescription string
 	IsAvailable     bool `gorm:"default:true"`
 	Bills           []Bill

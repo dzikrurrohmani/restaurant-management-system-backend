@@ -41,7 +41,7 @@ func initDbResource(dataSourceName string) (dbReturn *gorm.DB, err error) {
 		log.Println("Running in Migration Environment")
 		dbReturn = db.Debug()
 		migration.MigrateDb(dbReturn)
-	} else if env == "dev" {
+	} else if env == "development" {
 		log.Println("Running in Development Environment")
 		dbReturn = db.Debug()
 	}

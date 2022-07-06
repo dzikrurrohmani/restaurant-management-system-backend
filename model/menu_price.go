@@ -7,9 +7,9 @@ import (
 )
 
 type MenuPrice struct {
-	BaseModel BaseModel `gorm:"embedded"`
-	MenuID    sql.NullInt64
-	Price     float32 `gorm:"not null"`
+	ID     uint `gorm:"primaryKey;autoIncrement"`
+	MenuID sql.NullInt64
+	Price  float32 `gorm:"not null"`
 }
 
 func (MenuPrice) TableName() string {

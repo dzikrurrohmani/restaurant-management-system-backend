@@ -31,6 +31,7 @@ func Server() *appServer {
 func (a *appServer) initControllers() {
 	// controller.NewProductController(a.engine, a.useCaseManager.Cre, a.useCaseManager.ListProductUseCase())
 	controller.NewMenuController(a.engine, a.useCaseManager.CreateMenuUseCase(), a.useCaseManager.ReadMenuUseCase(), a.useCaseManager.UpdateMenuUseCase(), a.useCaseManager.DeleteMenuUseCase())
+	controller.NewMenuPriceController(a.engine, a.useCaseManager.CreateMenuPriceUseCase(), a.useCaseManager.ReadMenuPriceUseCase(), a.useCaseManager.UpdateMenuPriceUseCase(), a.useCaseManager.DeleteMenuPriceUseCase())
 }
 
 func (a *appServer) Run() {
