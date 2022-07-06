@@ -1,16 +1,17 @@
 package model
 
 import (
+	"database/sql"
 	"encoding/json"
 	"errors"
 	"time"
 )
 
 type Bill struct {
-	ID uint `gorm:"primaryKey;autoIncrement"`
+	ID          uint `gorm:"primaryKey;autoIncrement"`
 	TransDate   time.Time
 	CustomerID  uint
-	TableID     uint
+	TableID     sql.NullInt64
 	TransTypeID string
 	BillDetails []BillDetail
 }

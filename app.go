@@ -6,5 +6,4 @@ import (
 
 func main() {
 	delivery.Server().Run()
-
 }

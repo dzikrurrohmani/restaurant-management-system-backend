@@ -2,24 +2,19 @@ package repository
 
 import (
 	"errors"
-	"livecode-wmb-rest-api/model"
 
 	"gorm.io/gorm"
 )
 
 type BillDetailRepository interface {
-	GroupBy(result interface{}) error 
+	GroupBy(result interface{}) error
 }
 type billDetailRepository struct {
 	db *gorm.DB
 }
 
 func (m *billDetailRepository) GroupBy(result interface{}) error {
-	var BillDetailSlice []model.BillDetail
-	m.db.Find(BillDetailSlice)
-	// res := m.db.Model(BillDetailSlice).Select("cast(trans_date) as date, qty as total").Group("date").Find(result)
-	res := m.db.Raw("")
-	// res := m.db.Model("t_bill_detail").Select("cast(trans_date) as date, sum(t_bill_detail.qty*menu_price.price) as total").Joins("join menu_price on menu_price.id=menu_price_id").Group("date").Find(result)
+	res := m.db.Raw("select date(b.trans_date) as date, sum(tb.qty*mp.price) as total from t_bill b join t_bill_detail tb on b.id=tb.bill_id join m_menu_price mp on tb.menu_price_id=mp.id group by date").Scan(result)
 	if err := res.Error; err != nil {
 		if errors.Is(err, gorm.ErrRecordNotFound) {
 			return nil

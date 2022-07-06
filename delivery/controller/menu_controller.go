@@ -85,13 +85,6 @@ func (p *MenuController) deleteMenu(c *gin.Context) {
 		return
 	}
 	p.Success(c, deletedMenu)
-	// 	menuwithID, err := ReadMenuUseCase.ReadMenuById(3)
-	// 	utils.RaiseError(err)
-	// 	log.Println(menuwithID)
-
-	// 	// Proses delete dilakukan
-	// 	DeleteMenuUseCase := usecase.NewDeleteMenuUseCase(menuRepo)
-	// 	DeleteMenuUseCase.DeleteMenu(&menuwithID)
 }
 
 func NewMenuController(
