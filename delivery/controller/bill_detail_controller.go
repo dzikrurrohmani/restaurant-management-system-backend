@@ -15,16 +15,16 @@ type BillDetailController struct {
 }
 
 func (p *BillDetailController) getIncome(c *gin.Context) {
-	var result []struct {
+	var Result []struct {
 		Date  time.Time
-		Total int64
+		Total int
 	}
-	err := p.ucGetIncome.GetDailyIncome(&result)
+	err := p.ucGetIncome.GetDailyIncome(&Result)
 	if err != nil {
 		p.Failed(c, err)
 		return
 	}
-	p.Success(c, result)
+	p.Success(c, Result)
 }
 
 func NewBillDetailController(
