@@ -1,4 +1,5 @@
 export API_URL=localhost:8080
+export GRPC_URL=localhost:8888
 export DB_HOST=localhost
 export DB_PORT=5432
 export DB_USER=dzikrurrohmani

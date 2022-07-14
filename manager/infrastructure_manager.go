@@ -3,33 +3,30 @@ package manager
 import (
 	"livecode-wmb-2/config"
 	"livecode-wmb-2/migration"
+	"livecode-wmb-2/service"
 	"livecode-wmb-2/utils"
 	"log"
 	"os"
 
+	"google.golang.org/grpc"
+	"google.golang.org/grpc/credentials/insecure"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
 
 // Infra disini bertugas sebagai database penyimpanan pengganti slice
 type Infra interface {
+	LopeiClientConn() service.LopeiPaymentClient
 	SqlDb() *gorm.DB
 }
 
 type infra struct {
-	db *gorm.DB
+	lopeiClient service.LopeiPaymentClient
+	db          *gorm.DB
 }
 
 func (i *infra) SqlDb() *gorm.DB {
 	return i.db
-}
-
-func NewInfra(config config.Config) Infra {
-	resource, err := initDbResource(config.DataSourceName)
-	if err != nil {
-		log.Fatal(err.Error())
-	}
-	return &infra{db: resource}
 }
 
 func initDbResource(dataSourceName string) (dbReturn *gorm.DB, err error) {
@@ -46,4 +43,27 @@ func initDbResource(dataSourceName string) (dbReturn *gorm.DB, err error) {
 		dbReturn = db.Debug()
 	}
 	return
+}
+
+func (i *infra) LopeiClientConn() service.LopeiPaymentClient {
+	return i.lopeiClient
+}
+
+func initGrpcClient(grpcUrl string) service.LopeiPaymentClient {
+	dial, err := grpc.Dial(grpcUrl, grpc.WithTransportCredentials(insecure.NewCredentials()))
+	if err != nil {
+		log.Fatalln("did not connect..", err)
+	}
+	client := service.NewLopeiPaymentClient(dial)
+	log.Println("GRPC client connected..")
+	return client
+}
+
+func NewInfra(config config.Config) Infra {
+	resource, err := initDbResource(config.DataSourceName)
+	if err != nil {
+		log.Fatal(err.Error())
+	}
+	client := initGrpcClient(config.GrpcUrl)
+	return &infra{db: resource, lopeiClient: client}
 }

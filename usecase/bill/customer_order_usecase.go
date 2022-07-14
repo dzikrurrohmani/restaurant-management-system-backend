@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"livecode-wmb-2/model"
 	"livecode-wmb-2/repository"
+	"livecode-wmb-2/utils"
 )
 
 type CustomerOrderUseCase interface {
@@ -21,7 +22,7 @@ func (c *customerOrderUseCase) CreateOrder(bill *model.Bill) error {
 		tableSlice, err := c.tableRepo.FindBy(map[string]interface{}{"id": bill.TableID})
 		if err != nil {
 			fmt.Println("Informasi meja tidak ditemukan.")
-			return err
+			return utils.DataNotFoundError()
 		}
 		tableSelected := tableSlice[0]
 		if !tableSelected.IsAvailable {

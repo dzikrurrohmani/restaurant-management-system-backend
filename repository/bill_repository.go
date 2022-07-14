@@ -1,8 +1,13 @@
 package repository
 
 import (
+	"context"
 	"errors"
+	"fmt"
 	"livecode-wmb-2/model"
+	"livecode-wmb-2/service"
+	"livecode-wmb-2/utils"
+	"log"
 
 	"gorm.io/gorm"
 )
@@ -12,9 +17,11 @@ type BillRepository interface {
 	FindBy(by map[string]interface{}, preloads []string) ([]model.Bill, error)
 	FindAll() ([]model.Bill, error)
 	UpdateBy(bill *model.Bill, by map[string]interface{}) error
+	LopeiPayment(lopeiId int32, amount float32) error 
 }
 type billRepository struct {
-	db *gorm.DB
+	db     *gorm.DB
+	client service.LopeiPaymentClient
 }
 
 func (m *billRepository) Create(bill *model.Bill, table *model.Table) error {
@@ -81,8 +88,24 @@ func (m *billRepository) UpdateBy(bill *model.Bill, by map[string]interface{}) e
 	return nil
 }
 
-func NewBillRepository(db *gorm.DB) BillRepository {
+func (m *billRepository) LopeiPayment(lopeiId int32, amount float32) error {
+	payment, err := m.client.DoPayment(context.Background(), &service.PaymentMessage{
+		LopeiId: lopeiId,
+		Amount:  amount,
+	})
+	if err != nil {
+		log.Fatalln("Error when calling do payment..", err)
+	}
+	if payment.Error != nil {
+		return utils.InsufficientBallanceError()
+	}
+	fmt.Println(amount, payment.Error)
+	return nil
+}
+
+func NewBillRepository(db *gorm.DB, client service.LopeiPaymentClient) BillRepository {
 	repo := new(billRepository)
 	repo.db = db
+	repo.client = client
 	return repo
 }

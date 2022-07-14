@@ -6,8 +6,8 @@ import (
 )
 
 type Menu struct {
-	ID         uint   `gorm:"primaryKey;autoIncrement" json:"menuId"`
-	MenuName   string `gorm:"size:50;not null" json:"menuName"`
+	ID         uint        `gorm:"primaryKey;autoIncrement" json:"menuId"`
+	MenuName   string      `gorm:"size:50;not null" json:"menuName"`
 	MenuPrices []MenuPrice `json:"menuPrices"`
 }
 

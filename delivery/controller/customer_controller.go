@@ -33,8 +33,8 @@ func (p *CustomerController) custRegist(c *gin.Context) {
 
 func (p *CustomerController) memberActivation(c *gin.Context) {
 	type memberActivationInput struct {
-		MobilePhoneNo string
-		DiscountId    uint
+		MobilePhoneNo string `json:"customerPhone"`
+		DiscountId    uint `json:"discountId"`
 	}
 	var temp memberActivationInput
 	err := p.ParseRequestBody(c, &temp)

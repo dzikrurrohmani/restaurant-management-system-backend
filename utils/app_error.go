@@ -23,6 +23,7 @@ func RequiredError() error {
 		ErrorType:    http.StatusBadRequest,
 	}
 }
+
 func UnauthorizedError() error {
 	return AppError{
 		ErrorCode:    "X04",
@@ -30,12 +31,21 @@ func UnauthorizedError() error {
 		ErrorType:    http.StatusUnauthorized,
 	}
 }
+
 func DataNotFoundError() error {
 	return AppError{
 		ErrorCode:    "X02",
 		ErrorMessage: "No Data Found",
 	}
 }
+
+func InsufficientBallanceError() error {
+	return AppError{
+		ErrorCode:    "X07",
+		ErrorMessage: "Insufficient Balance",
+	}
+}
+
 
 func RaiseError(err error) {
 	if err != nil {

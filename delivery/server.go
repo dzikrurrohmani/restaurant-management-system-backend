@@ -45,4 +45,9 @@ func (a *appServer) Run() {
 	if err != nil {
 		panic(err)
 	}
+	// balance, err := a.usecaseManager.CheckBalanceUseCase().GetBalance(int32(3))
+	// if err != nil {
+	// 	fmt.Println(err)
+	// }
+	// fmt.Println(balance)
 }

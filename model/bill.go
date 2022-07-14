@@ -9,10 +9,11 @@ import (
 type Bill struct {
 	ID          uint         `gorm:"primaryKey;autoIncrement" json:"billId"`
 	TransDate   time.Time    `json:"transDate"`
-	CustomerID  uint        `json:"customerId"`
+	CustomerID  uint         `json:"customerId"`
 	TableID     *uint        `json:"tableId"`
 	TransTypeID string       `json:"transtypeId"`
 	BillDetails []BillDetail `json:"billBillDetails"`
+	Customer    Customer     `json:"-"`
 }
 
 func (Bill) TableName() string {

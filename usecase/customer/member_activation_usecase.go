@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"livecode-wmb-2/model"
 	"livecode-wmb-2/repository"
+	"livecode-wmb-2/utils"
 )
 
 type MemberActivationUseCase interface {
@@ -18,17 +19,15 @@ type memberActivationUseCase struct {
 
 func (m *memberActivationUseCase) ActivateMember(phoneNumber string, discountId uint) (model.Customer, error) {
 	by := map[string]interface{}{"mobile_phone_no": phoneNumber}
-	customerSlice, err := m.custRepo.FindBy(by)
-	if err != nil {
-		fmt.Println("Data tidak ditemukan.")
-		return model.Customer{}, err
+	customerSlice, _ := m.custRepo.FindBy(by)
+	if len(customerSlice)==0 {
+		return model.Customer{}, utils.DataNotFoundError()
 	}
 	customerSelected := customerSlice[0]
 	if customerSelected.IsMember {
-		fmt.Println("Data tidak ditemukan.")
 		return customerSelected, errors.New("nomor telepon tersebut sudah terdaftar sebagai member")
 	}
-	err = m.custRepo.UpdateBy(&customerSelected, map[string]interface{}{"is_member": true})
+	err := m.custRepo.UpdateBy(&customerSelected, map[string]interface{}{"is_member": true})
 	if err != nil {
 		fmt.Println("Aktivasi member gagal dilakukan.")
 		return model.Customer{}, err
@@ -42,8 +41,7 @@ func (m *memberActivationUseCase) ActivateMember(phoneNumber string, discountId 
 	}
 	customerSlice, err = m.custRepo.FindBy(by)
 	if err != nil {
-		fmt.Println("Data tidak ditemukan.")
-		return model.Customer{}, err
+		return model.Customer{}, utils.DataNotFoundError()
 	}
 	customerReturn := customerSlice[0]
 	return customerReturn, nil

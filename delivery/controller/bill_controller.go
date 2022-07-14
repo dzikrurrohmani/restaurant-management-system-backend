@@ -35,15 +35,16 @@ func (p *BillController) custOrder(c *gin.Context) {
 
 func (p *BillController) custPayment(c *gin.Context) {
 	type custPaymentInput struct {
-		BillId uint
+		BillId        uint
+		PaymentMethod string
 	}
-	var temp custPaymentInput
-	err := p.ParseRequestBody(c, &temp)
+	var dto custPaymentInput
+	err := p.ParseRequestBody(c, &dto)
 	if err != nil {
 		p.Failed(c, utils.RequiredError())
 		return
 	}
-	Bill, err := p.ucCustPayment.OrderPayment(temp.BillId)
+	Bill, err := p.ucCustPayment.OrderPayment(dto.BillId, dto.PaymentMethod)
 	if err != nil {
 		p.Failed(c, err)
 		return

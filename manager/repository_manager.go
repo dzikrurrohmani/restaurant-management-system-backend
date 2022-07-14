@@ -21,7 +21,7 @@ type repositoryManager struct {
 }
 
 func (r *repositoryManager) BillRepo() repository.BillRepository {
-	return repository.NewBillRepository(r.infra.SqlDb())
+	return repository.NewBillRepository(r.infra.SqlDb(), r.infra.LopeiClientConn())
 }
 
 func (r *repositoryManager) CustomerRepo() repository.CustomerRepository {

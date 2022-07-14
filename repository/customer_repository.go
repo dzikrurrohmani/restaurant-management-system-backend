@@ -26,7 +26,7 @@ func (m *customerRepository) Create(customer []*model.Customer) error {
 
 func (m *customerRepository) FindBy(by map[string]interface{}) ([]model.Customer, error) {
 	var customers []model.Customer
-	result := m.db.Where(by).Find(&customers)
+	result := m.db.Preload("Discounts").Where(by).Find(&customers)
 	if err := result.Error; err != nil {
 		if errors.Is(err, gorm.ErrRecordNotFound) {
 			return nil, nil
@@ -40,7 +40,7 @@ func (m *customerRepository) FindBy(by map[string]interface{}) ([]model.Customer
 
 func (m *customerRepository) FindAll() ([]model.Customer, error) {
 	var customers []model.Customer
-	result := m.db.Find(&customers)
+	result := m.db.Preload("Discounts").Find(&customers)
 	if err := result.Error; err != nil {
 		return nil, err
 	}
