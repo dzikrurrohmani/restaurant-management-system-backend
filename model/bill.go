@@ -1,19 +1,18 @@
 package model
 
 import (
-	"database/sql"
 	"encoding/json"
 	"errors"
 	"time"
 )
 
 type Bill struct {
-	ID          uint          `gorm:"primaryKey;autoIncrement" json:"billId"`
-	TransDate   time.Time     `json:"transDate"`
-	CustomerID  uint          `json:"customerId"`
-	TableID     sql.NullInt64 `json:"tableId"`
-	TransTypeID string        `json:"transtypeId"`
-	BillDetails []BillDetail  `json:"billBillDetails"`
+	ID          uint         `gorm:"primaryKey;autoIncrement" json:"billId"`
+	TransDate   time.Time    `json:"transDate"`
+	CustomerID  uint        `json:"customerId"`
+	TableID     *uint        `json:"tableId"`
+	TransTypeID string       `json:"transtypeId"`
+	BillDetails []BillDetail `json:"billBillDetails"`
 }
 
 func (Bill) TableName() string {

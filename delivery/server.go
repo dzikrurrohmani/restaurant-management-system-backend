@@ -20,7 +20,7 @@ func Server() *appServer {
 	infra := manager.NewInfra(appConfig)
 	repoManager := manager.NewRepositoryManager(infra) // kalo misal slice (di sini isinya slice)
 	useCaseManager := manager.NewUseCaseManager(repoManager)
-	host := appConfig.Url
+	host := appConfig.ApiUrl
 	return &appServer{
 		useCaseManager: useCaseManager,
 		engine:         r,

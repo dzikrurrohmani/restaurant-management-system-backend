@@ -7,7 +7,7 @@ import (
 
 type MenuPrice struct {
 	ID     uint    `gorm:"primaryKey;autoIncrement" json:"menupriceId"`
-	MenuID uint    `json:"menuId"`
+	MenuID *uint   `json:"menuId"`
 	Price  float32 `gorm:"not null" json:"menuPrice"`
 }
 

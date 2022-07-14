@@ -5,8 +5,12 @@ import (
 	"os"
 )
 
+type GrpcConfig struct {
+	GrpcUrl string
+}
+
 type ApiConfig struct {
-	Url string
+	ApiUrl string
 }
 
 type DbConfig struct {
@@ -16,10 +20,12 @@ type DbConfig struct {
 type Config struct {
 	ApiConfig
 	DbConfig
+	GrpcConfig
 }
 
 func (c *Config) readConfig() {
-	api := os.Getenv("API_URL")
+	apiUrl := os.Getenv("API_URL")
+	grpcUrl := os.Getenv("GRPC_URL")
 	dbHost := os.Getenv("DB_HOST")
 	dbPort := os.Getenv("DB_PORT")
 	dbName := os.Getenv("DB_NAME")
@@ -28,7 +34,8 @@ func (c *Config) readConfig() {
 
 	dsn := fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%s", dbHost, dbUser, dbPassword, dbName, dbPort)
 	c.DbConfig = DbConfig{DataSourceName: dsn}
-	c.ApiConfig = ApiConfig{Url: api}
+	c.ApiConfig = ApiConfig{ApiUrl: apiUrl}
+	c.GrpcConfig = GrpcConfig{GrpcUrl: grpcUrl}
 }
 
 func NewConfig() Config {

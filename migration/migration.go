@@ -15,8 +15,8 @@ func MigrateDb(db *gorm.DB) {
 		&model.Discount{},
 		&model.MenuPrice{},
 		&model.TransType{},
-		&model.BillDetail{},
 		&model.Bill{},
+		&model.BillDetail{},
 	)
 	utils.PanicError(err)
 }
