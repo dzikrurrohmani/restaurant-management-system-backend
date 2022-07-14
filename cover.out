@@ -1,0 +1,13 @@
+mode: set
+livecode-wmb-2/usecase/menu/create_menu_usecase.go:16.66,18.2 1 1
+livecode-wmb-2/usecase/menu/create_menu_usecase.go:20.81,24.2 3 1
+livecode-wmb-2/usecase/menu/delete_menu_usecase.go:16.64,18.2 1 1
+livecode-wmb-2/usecase/menu/delete_menu_usecase.go:20.81,24.2 3 1
+livecode-wmb-2/usecase/menu/read_menu_usecase.go:18.63,20.2 1 1
+livecode-wmb-2/usecase/menu/read_menu_usecase.go:22.69,24.25 2 1
+livecode-wmb-2/usecase/menu/read_menu_usecase.go:27.2,27.26 1 1
+livecode-wmb-2/usecase/menu/read_menu_usecase.go:24.25,26.3 1 1
+livecode-wmb-2/usecase/menu/read_menu_usecase.go:30.87,32.2 1 1
+livecode-wmb-2/usecase/menu/read_menu_usecase.go:34.77,38.2 3 1
+livecode-wmb-2/usecase/menu/update_menu_usecase.go:16.91,18.2 1 1
+livecode-wmb-2/usecase/menu/update_menu_usecase.go:20.81,24.2 3 1
