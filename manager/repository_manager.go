@@ -1,7 +1,7 @@
 package manager
 
 import (
-	"livecode-wmb-rest-api/repository"
+	"livecode-wmb-2/repository"
 )
 
 type RepositoryManager interface {

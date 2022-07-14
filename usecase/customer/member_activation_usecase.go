@@ -3,8 +3,8 @@ package customer_usecase
 import (
 	"errors"
 	"fmt"
-	"livecode-wmb-rest-api/model"
-	"livecode-wmb-rest-api/repository"
+	"livecode-wmb-2/model"
+	"livecode-wmb-2/repository"
 )
 
 type MemberActivationUseCase interface {

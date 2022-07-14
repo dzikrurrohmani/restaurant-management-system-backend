@@ -6,11 +6,11 @@ import (
 )
 
 type BillDetail struct {
-	ID uint `gorm:"primaryKey;autoIncrement"`
-	BillID      uint
-	MenuPriceID uint
-	Qty         float32
-	MenuPrice   MenuPrice
+	ID          uint `gorm:"primaryKey;autoIncrement" json:"billdetailId"`
+	BillID      uint `json:"billId"`
+	MenuPriceID uint `json:"menupriceId"`
+	Qty         float32 `json:"billdetailQty"`
+	MenuPrice   MenuPrice `json:"menuPrice"`
 }
 
 func (BillDetail) TableName() string {

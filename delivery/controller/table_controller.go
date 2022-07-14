@@ -1,17 +1,17 @@
 package controller
 
 import (
-	"livecode-wmb-rest-api/delivery/api"
-	"livecode-wmb-rest-api/model"
-	table_usecase "livecode-wmb-rest-api/usecase/table"
-	"livecode-wmb-rest-api/utils"
+	"livecode-wmb-2/delivery/api"
+	"livecode-wmb-2/model"
+	table_usecase "livecode-wmb-2/usecase/table"
+	"livecode-wmb-2/utils"
 
 	"github.com/fatih/structs"
 	"github.com/gin-gonic/gin"
 )
 
 type TableController struct {
-	router       *gin.Engine
+	router        *gin.Engine
 	ucTableCreate table_usecase.CreateTableUseCase
 	ucTableRead   table_usecase.ReadTableUseCase
 	ucTableUpdate table_usecase.UpdateTableUseCase
@@ -95,7 +95,7 @@ func NewTableController(
 	ucTableDelete table_usecase.DeleteTableUseCase) *TableController {
 	// Disini akan terdapat kumpulan semua request method yang dibutuhkan
 	controller := TableController{
-		router:       router,
+		router:        router,
 		ucTableCreate: ucTableCreate,
 		ucTableRead:   ucTableRead,
 		ucTableUpdate: ucTableUpdate,

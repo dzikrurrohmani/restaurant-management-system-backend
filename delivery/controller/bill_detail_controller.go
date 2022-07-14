@@ -1,8 +1,8 @@
 package controller
 
 import (
-	"livecode-wmb-rest-api/delivery/api"
-	billdetail_usecase "livecode-wmb-rest-api/usecase/bill_detail"
+	"livecode-wmb-2/delivery/api"
+	billdetail_usecase "livecode-wmb-2/usecase/bill_detail"
 	"time"
 
 	"github.com/gin-gonic/gin"

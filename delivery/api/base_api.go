@@ -1,7 +1,7 @@
 package api
 
 import (
-	"livecode-wmb-rest-api/delivery/api/response"
+	"livecode-wmb-2/delivery/api/response"
 
 	"github.com/gin-gonic/gin"
 	"github.com/mitchellh/mapstructure"

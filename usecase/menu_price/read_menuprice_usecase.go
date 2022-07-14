@@ -1,8 +1,8 @@
 package menuprice_usecase
 
 import (
-	"livecode-wmb-rest-api/model"
-	"livecode-wmb-rest-api/repository"
+	"livecode-wmb-2/model"
+	"livecode-wmb-2/repository"
 )
 
 type ReadMenuPriceUseCase interface {

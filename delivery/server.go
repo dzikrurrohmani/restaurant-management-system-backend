@@ -1,9 +1,9 @@
 package delivery
 
 import (
-	"livecode-wmb-rest-api/config"
-	"livecode-wmb-rest-api/delivery/controller"
-	"livecode-wmb-rest-api/manager"
+	"livecode-wmb-2/config"
+	"livecode-wmb-2/delivery/controller"
+	"livecode-wmb-2/manager"
 
 	"github.com/gin-gonic/gin"
 )

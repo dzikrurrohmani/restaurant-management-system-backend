@@ -2,7 +2,7 @@ package response
 
 import (
 	"errors"
-	"livecode-wmb-rest-api/utils"
+	"livecode-wmb-2/utils"
 	"net/http"
 )
 

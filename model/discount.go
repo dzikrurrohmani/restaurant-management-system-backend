@@ -6,9 +6,9 @@ import (
 )
 
 type Discount struct {
-	ID uint `gorm:"primaryKey;autoIncrement"`
-	Description string
-	Pct         uint
+	ID          uint `gorm:"primaryKey;autoIncrement" json:"discountId"`
+	Description string `json:"discountDescription"`
+	Pct         uint `json:"discountPct"`
 	// Customers   []Customer `gorm:"many2many:m_customer_discount"`
 }
 

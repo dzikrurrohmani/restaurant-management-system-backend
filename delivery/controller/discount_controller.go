@@ -1,17 +1,17 @@
 package controller
 
 import (
-	"livecode-wmb-rest-api/delivery/api"
-	"livecode-wmb-rest-api/model"
-	discount_usecase "livecode-wmb-rest-api/usecase/discount"
-	"livecode-wmb-rest-api/utils"
+	"livecode-wmb-2/delivery/api"
+	"livecode-wmb-2/model"
+	discount_usecase "livecode-wmb-2/usecase/discount"
+	"livecode-wmb-2/utils"
 
 	"github.com/fatih/structs"
 	"github.com/gin-gonic/gin"
 )
 
 type DiscountController struct {
-	router       *gin.Engine
+	router           *gin.Engine
 	ucDiscountCreate discount_usecase.CreateDiscountUseCase
 	ucDiscountRead   discount_usecase.ReadDiscountUseCase
 	ucDiscountUpdate discount_usecase.UpdateDiscountUseCase
@@ -95,7 +95,7 @@ func NewDiscountController(
 	ucDiscountDelete discount_usecase.DeleteDiscountUseCase) *DiscountController {
 	// Disini akan terdapat kumpulan semua request method yang dibutuhkan
 	controller := DiscountController{
-		router:       router,
+		router:           router,
 		ucDiscountCreate: ucDiscountCreate,
 		ucDiscountRead:   ucDiscountRead,
 		ucDiscountUpdate: ucDiscountUpdate,

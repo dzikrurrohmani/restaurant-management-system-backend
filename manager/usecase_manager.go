@@ -1,14 +1,14 @@
 package manager
 
 import (
-	bill_usecase "livecode-wmb-rest-api/usecase/bill"
-	billdetail_usecase "livecode-wmb-rest-api/usecase/bill_detail"
-	customer_usecase "livecode-wmb-rest-api/usecase/customer"
-	discount_usecase "livecode-wmb-rest-api/usecase/discount"
-	menu_usecase "livecode-wmb-rest-api/usecase/menu"
-	menuprice_usecase "livecode-wmb-rest-api/usecase/menu_price"
-	table_usecase "livecode-wmb-rest-api/usecase/table"
-	transtype_usecase "livecode-wmb-rest-api/usecase/trans_type"
+	bill_usecase "livecode-wmb-2/usecase/bill"
+	billdetail_usecase "livecode-wmb-2/usecase/bill_detail"
+	customer_usecase "livecode-wmb-2/usecase/customer"
+	discount_usecase "livecode-wmb-2/usecase/discount"
+	menu_usecase "livecode-wmb-2/usecase/menu"
+	menuprice_usecase "livecode-wmb-2/usecase/menu_price"
+	table_usecase "livecode-wmb-2/usecase/table"
+	transtype_usecase "livecode-wmb-2/usecase/trans_type"
 )
 
 type UseCaseManager interface {

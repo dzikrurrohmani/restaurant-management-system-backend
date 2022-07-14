@@ -1,10 +1,10 @@
 package controller
 
 import (
-	"livecode-wmb-rest-api/delivery/api"
-	"livecode-wmb-rest-api/model"
-	customer_usecase "livecode-wmb-rest-api/usecase/customer"
-	"livecode-wmb-rest-api/utils"
+	"livecode-wmb-2/delivery/api"
+	"livecode-wmb-2/model"
+	customer_usecase "livecode-wmb-2/usecase/customer"
+	"livecode-wmb-2/utils"
 
 	"github.com/gin-gonic/gin"
 )
@@ -34,7 +34,7 @@ func (p *CustomerController) custRegist(c *gin.Context) {
 func (p *CustomerController) memberActivation(c *gin.Context) {
 	type memberActivationInput struct {
 		MobilePhoneNo string
-		DiscountId uint
+		DiscountId    uint
 	}
 	var temp memberActivationInput
 	err := p.ParseRequestBody(c, &temp)

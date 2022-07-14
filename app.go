@@ -1,7 +1,7 @@
 package main
 
 import (
-	"livecode-wmb-rest-api/delivery"
+	"livecode-wmb-2/delivery"
 )
 
 func main() {

@@ -1,8 +1,8 @@
 package migration
 
 import (
-	"livecode-wmb-rest-api/model"
-	"livecode-wmb-rest-api/utils"
+	"livecode-wmb-2/model"
+	"livecode-wmb-2/utils"
 
 	"gorm.io/gorm"
 )

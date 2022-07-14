@@ -2,7 +2,7 @@ package repository
 
 import (
 	"errors"
-	"livecode-wmb-rest-api/model"
+	"livecode-wmb-2/model"
 
 	"gorm.io/gorm"
 )

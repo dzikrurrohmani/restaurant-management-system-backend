@@ -1,7 +1,7 @@
 package billdetail_usecase
 
 import (
-	"livecode-wmb-rest-api/repository"
+	"livecode-wmb-2/repository"
 )
 
 type GetIncomeUseCase interface {

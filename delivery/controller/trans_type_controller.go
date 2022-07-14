@@ -1,17 +1,17 @@
 package controller
 
 import (
-	"livecode-wmb-rest-api/delivery/api"
-	"livecode-wmb-rest-api/model"
-	transtype_usecase "livecode-wmb-rest-api/usecase/trans_type"
-	"livecode-wmb-rest-api/utils"
+	"livecode-wmb-2/delivery/api"
+	"livecode-wmb-2/model"
+	transtype_usecase "livecode-wmb-2/usecase/trans_type"
+	"livecode-wmb-2/utils"
 
 	"github.com/fatih/structs"
 	"github.com/gin-gonic/gin"
 )
 
 type TransTypeController struct {
-	router       *gin.Engine
+	router            *gin.Engine
 	ucTransTypeCreate transtype_usecase.CreateTransTypeUseCase
 	ucTransTypeRead   transtype_usecase.ReadTransTypeUseCase
 	ucTransTypeUpdate transtype_usecase.UpdateTransTypeUseCase
@@ -95,7 +95,7 @@ func NewTransTypeController(
 	ucTransTypeDelete transtype_usecase.DeleteTransTypeUseCase) *TransTypeController {
 	// Disini akan terdapat kumpulan semua request method yang dibutuhkan
 	controller := TransTypeController{
-		router:       router,
+		router:            router,
 		ucTransTypeCreate: ucTransTypeCreate,
 		ucTransTypeRead:   ucTransTypeRead,
 		ucTransTypeUpdate: ucTransTypeUpdate,

@@ -8,12 +8,12 @@ import (
 )
 
 type Bill struct {
-	ID          uint `gorm:"primaryKey;autoIncrement"`
-	TransDate   time.Time
-	CustomerID  uint
-	TableID     sql.NullInt64
-	TransTypeID string
-	BillDetails []BillDetail
+	ID          uint          `gorm:"primaryKey;autoIncrement" json:"billId"`
+	TransDate   time.Time     `json:"transDate"`
+	CustomerID  uint          `json:"customerId"`
+	TableID     sql.NullInt64 `json:"tableId"`
+	TransTypeID string        `json:"transtypeId"`
+	BillDetails []BillDetail  `json:"billBillDetails"`
 }
 
 func (Bill) TableName() string {

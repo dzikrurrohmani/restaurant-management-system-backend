@@ -2,8 +2,8 @@ package bill_usecase
 
 import (
 	"fmt"
-	"livecode-wmb-rest-api/model"
-	"livecode-wmb-rest-api/repository"
+	"livecode-wmb-2/model"
+	"livecode-wmb-2/repository"
 )
 
 type CustomerPaymentUseCase interface {
@@ -27,7 +27,7 @@ func (c *customerPaymentUseCase) PrintBill(billId uint) (model.Bill, error) {
 
 func (c *customerPaymentUseCase) OrderPayment(billId uint) (model.Bill, error) {
 	billSlice, err := c.billRepo.FindBy(map[string]interface{}{"id": billId}, nil)
-	if err != nil && len(billSlice)==0 {
+	if err != nil && len(billSlice) == 0 {
 		fmt.Println("Informasi bill tidak ditemukan.")
 		return model.Bill{}, err
 	}

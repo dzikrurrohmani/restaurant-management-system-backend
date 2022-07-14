@@ -6,12 +6,12 @@ import (
 )
 
 type Customer struct {
-	ID uint `gorm:"primaryKey;autoIncrement"`
-	CustomerName  string    `gorm:"size:50;not null"`
-	MobilePhoneNo string    `gorm:"unique; size:13"`
-	IsMember      bool      `gorm:"default:false"`
-	Bills         []Bill
-	Discounts     []Discount `gorm:"many2many:m_customer_discount"`
+	ID            uint   `gorm:"primaryKey;autoIncrement" json:"customerId"`
+	CustomerName  string `gorm:"size:50;not null" json:"customerName"`
+	MobilePhoneNo string `gorm:"unique; size:13" json:"customerPhone"`
+	IsMember      bool   `gorm:"default:false" json:"customerMember"`
+	Bills         []Bill `json:"customerBills"`
+	Discounts     []Discount `gorm:"many2many:m_customer_discount" json:"customerDiscounts"`
 }
 
 func (Customer) TableName() string {

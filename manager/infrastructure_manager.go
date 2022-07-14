@@ -1,9 +1,9 @@
 package manager
 
 import (
-	"livecode-wmb-rest-api/config"
-	"livecode-wmb-rest-api/migration"
-	"livecode-wmb-rest-api/utils"
+	"livecode-wmb-2/config"
+	"livecode-wmb-2/migration"
+	"livecode-wmb-2/utils"
 	"log"
 	"os"
 

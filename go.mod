@@ -1,4 +1,4 @@
-module livecode-wmb-rest-api
+module livecode-wmb-2
 
 go 1.18
 

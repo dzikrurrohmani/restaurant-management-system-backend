@@ -1,17 +1,17 @@
 package controller
 
 import (
-	"livecode-wmb-rest-api/delivery/api"
-	"livecode-wmb-rest-api/model"
-	menuprice_usecase "livecode-wmb-rest-api/usecase/menu_price"
-	"livecode-wmb-rest-api/utils"
+	"livecode-wmb-2/delivery/api"
+	"livecode-wmb-2/model"
+	menuprice_usecase "livecode-wmb-2/usecase/menu_price"
+	"livecode-wmb-2/utils"
 
 	"github.com/fatih/structs"
 	"github.com/gin-gonic/gin"
 )
 
 type MenuPriceController struct {
-	router       *gin.Engine
+	router            *gin.Engine
 	ucMenuPriceCreate menuprice_usecase.CreateMenuPriceUseCase
 	ucMenuPriceRead   menuprice_usecase.ReadMenuPriceUseCase
 	ucMenuPriceUpdate menuprice_usecase.UpdateMenuPriceUseCase
@@ -95,7 +95,7 @@ func NewMenuPriceController(
 	ucMenuPriceDelete menuprice_usecase.DeleteMenuPriceUseCase) *MenuPriceController {
 	// Disini akan terdapat kumpulan semua request method yang dibutuhkan
 	controller := MenuPriceController{
-		router:       router,
+		router:            router,
 		ucMenuPriceCreate: ucMenuPriceCreate,
 		ucMenuPriceRead:   ucMenuPriceRead,
 		ucMenuPriceUpdate: ucMenuPriceUpdate,

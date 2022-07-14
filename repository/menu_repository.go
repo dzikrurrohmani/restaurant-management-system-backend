@@ -2,7 +2,7 @@ package repository
 
 import (
 	"errors"
-	"livecode-wmb-rest-api/model"
+	"livecode-wmb-2/model"
 
 	"gorm.io/gorm"
 )
@@ -39,7 +39,7 @@ func (m *menuRepository) FindBy(by map[string]interface{}) ([]model.Menu, error)
 
 func (m *menuRepository) FindAll() ([]model.Menu, error) {
 	var menus []model.Menu
-	result := m.db.Find(&menus)
+	result := m.db.Preload("MenuPrices").Find(&menus)
 	if err := result.Error; err != nil {
 		return nil, err
 	}

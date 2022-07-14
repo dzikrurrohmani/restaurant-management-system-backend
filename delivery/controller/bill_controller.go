@@ -1,10 +1,10 @@
 package controller
 
 import (
-	"livecode-wmb-rest-api/delivery/api"
-	"livecode-wmb-rest-api/model"
-	bill_usecase "livecode-wmb-rest-api/usecase/bill"
-	"livecode-wmb-rest-api/utils"
+	"livecode-wmb-2/delivery/api"
+	"livecode-wmb-2/model"
+	bill_usecase "livecode-wmb-2/usecase/bill"
+	"livecode-wmb-2/utils"
 	"time"
 
 	"github.com/gin-gonic/gin"

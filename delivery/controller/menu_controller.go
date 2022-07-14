@@ -1,10 +1,10 @@
 package controller
 
 import (
-	"livecode-wmb-rest-api/delivery/api"
-	"livecode-wmb-rest-api/model"
-	menu_usecase "livecode-wmb-rest-api/usecase/menu"
-	"livecode-wmb-rest-api/utils"
+	"livecode-wmb-2/delivery/api"
+	"livecode-wmb-2/model"
+	menu_usecase "livecode-wmb-2/usecase/menu"
+	"livecode-wmb-2/utils"
 
 	"github.com/fatih/structs"
 	"github.com/gin-gonic/gin"

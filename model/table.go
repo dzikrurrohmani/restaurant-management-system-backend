@@ -6,10 +6,10 @@ import (
 )
 
 type Table struct {
-	ID     uint `gorm:"primaryKey;autoIncrement"`
-	TableDescription string
-	IsAvailable     bool `gorm:"default:true"`
-	Bills           []Bill
+	ID               uint `gorm:"primaryKey;autoIncrement" json:"tableId"`
+	TableDescription string `json:"tableDescription"`
+	IsAvailable      bool `gorm:"default:true" json:"tableAvailability"`
+	Bills            []Bill `json:"tableBills"`
 }
 
 func (Table) TableName() string {
