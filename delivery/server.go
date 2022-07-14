@@ -3,6 +3,7 @@ package delivery
 import (
 	"livecode-wmb-2/config"
 	"livecode-wmb-2/delivery/controller"
+	"livecode-wmb-2/delivery/middleware"
 	"livecode-wmb-2/manager"
 
 	"github.com/gin-gonic/gin"
@@ -16,6 +17,7 @@ type appServer struct {
 
 func Server() *appServer {
 	r := gin.Default()
+	r.Use(middleware.AuthTokenMiddleware())
 	appConfig := config.NewConfig()
 	infra := manager.NewInfra(appConfig)
 	repoManager := manager.NewRepositoryManager(infra) // kalo misal slice (di sini isinya slice)
@@ -29,6 +31,7 @@ func Server() *appServer {
 }
 
 func (a *appServer) initControllers() {
+	controller.NewLoginController(a.engine)
 	controller.NewMenuController(a.engine, a.useCaseManager.CreateMenuUseCase(), a.useCaseManager.ReadMenuUseCase(), a.useCaseManager.UpdateMenuUseCase(), a.useCaseManager.DeleteMenuUseCase())
 	controller.NewMenuPriceController(a.engine, a.useCaseManager.CreateMenuPriceUseCase(), a.useCaseManager.ReadMenuPriceUseCase(), a.useCaseManager.UpdateMenuPriceUseCase(), a.useCaseManager.DeleteMenuPriceUseCase())
 	controller.NewDiscountController(a.engine, a.useCaseManager.CreateDiscountUseCase(), a.useCaseManager.ReadDiscountUseCase(), a.useCaseManager.UpdateDiscountUseCase(), a.useCaseManager.DeleteDiscountUseCase())
