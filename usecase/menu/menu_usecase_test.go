@@ -74,7 +74,7 @@ func (suite *MenuUseCaseTestSuite) SetupTest() {
 	suite.menuRepoMock = new(menuRepoMock)
 }
 
-func (suite *MenuUseCaseTestSuite) TestMenu() {
+func (suite *MenuUseCaseTestSuite) TestCreateMenu() {
 	dummyMenu := dummyMenus[0]
 	suite.menuRepoMock.On("Create", []*model.Menu{&dummyMenu}).Return(nil) // expected, Get(0) : dummyMenu, Get(1) : nil
 	menuUseCaseTest := NewCreateMenuUseCase(suite.menuRepoMock)

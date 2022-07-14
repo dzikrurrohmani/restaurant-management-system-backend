@@ -1,0 +1,943 @@
+{
+	"info": {
+		"_postman_id": "d06a2418-f0b7-4269-96a9-f787439e1489",
+		"name": "livecode-wmb-2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21768200"
+	},
+	"item": [
+		{
+			"name": "LOGIN FIRST",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"admin\",\n    \"password\": \"admin\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/login",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "1. CREATE MENU Authorized",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJBcGlXbWJQb3MiLCJ1c2VybmFtZSI6ImFkbWluIiwiZW1haWwiOiJhZG1pbkB3bWIuY29tIn0.1BpkHjjNy307-QprKFfkY-p-aBgZILIdtA0r1zkJ5L8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"menuName\": \"Nasi Goreng Jumbo\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/menu",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"menu"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "1. CREATE MENU Unauthorized",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"menuName\": \"Nasi Goreng\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/menu",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"menu"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "1. READ MENU Authorized",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJBcGlXbWJQb3MiLCJ1c2VybmFtZSI6ImFkbWluIiwiZW1haWwiOiJhZG1pbkB3bWIuY29tIn0.1BpkHjjNy307-QprKFfkY-p-aBgZILIdtA0r1zkJ5L8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/menu",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"menu"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "1. READ MENU Unauthorized",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/menu",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"menu"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2. CREATE MENU PRICE Authorized",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJBcGlXbWJQb3MiLCJ1c2VybmFtZSI6ImFkbWluIiwiZW1haWwiOiJhZG1pbkB3bWIuY29tIn0.1BpkHjjNy307-QprKFfkY-p-aBgZILIdtA0r1zkJ5L8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"menuId\": 2,\n    \"menuPrice\": 2000\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/menuprice",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"menuprice"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2. CREATE MENU PRICE Unauthorized",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"menuId\": 2,\n    \"menuPrice\": 2000\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/menu",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"menu"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2. READ MENU PRICE Authorized",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJBcGlXbWJQb3MiLCJ1c2VybmFtZSI6ImFkbWluIiwiZW1haWwiOiJhZG1pbkB3bWIuY29tIn0.1BpkHjjNy307-QprKFfkY-p-aBgZILIdtA0r1zkJ5L8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/menuprice",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"menuprice"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2. READ MENU PRICE Unauthorized",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/menuprice",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"menuprice"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3. CREATE DISCOUNT Authorized",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJBcGlXbWJQb3MiLCJ1c2VybmFtZSI6ImFkbWluIiwiZW1haWwiOiJhZG1pbkB3bWIuY29tIn0.1BpkHjjNy307-QprKFfkY-p-aBgZILIdtA0r1zkJ5L8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"discountDescription\": \"Mendapat potongan harga sejumlah 10 persen\",\n    \"discountPct\": 10\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/discount",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"discount"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3. CREATE DISCOUNT Unauthorized",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"discountDescription\": \"Mendapat potongan harga sejumlah 10 persen\",\n    \"discountPct\": 10\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/discount",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"discount"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3. READ DISCOUNT Authorized",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJBcGlXbWJQb3MiLCJ1c2VybmFtZSI6ImFkbWluIiwiZW1haWwiOiJhZG1pbkB3bWIuY29tIn0.1BpkHjjNy307-QprKFfkY-p-aBgZILIdtA0r1zkJ5L8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/discount",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"discount"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3. READ DISCOUNT Unauthorized",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/discount",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"discount"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4. CREATE TABLE Authorized",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJBcGlXbWJQb3MiLCJ1c2VybmFtZSI6ImFkbWluIiwiZW1haWwiOiJhZG1pbkB3bWIuY29tIn0.1BpkHjjNy307-QprKFfkY-p-aBgZILIdtA0r1zkJ5L8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"tableDescription\": \"T001\"\n}\n\n// {\n//     \"tableDescription\": \"T002\"\n// }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/table",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"table"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4. CREATE TABLE Unauthorized",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"tableDescription\": \"T001\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/table",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"table"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4. READ TABLE Authorized",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJBcGlXbWJQb3MiLCJ1c2VybmFtZSI6ImFkbWluIiwiZW1haWwiOiJhZG1pbkB3bWIuY29tIn0.1BpkHjjNy307-QprKFfkY-p-aBgZILIdtA0r1zkJ5L8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/table",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"table"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4. READ TABLE Unauthorized",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/table",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"table"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "5. CREATE TRANS TYPE Authorized",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJBcGlXbWJQb3MiLCJ1c2VybmFtZSI6ImFkbWluIiwiZW1haWwiOiJhZG1pbkB3bWIuY29tIn0.1BpkHjjNy307-QprKFfkY-p-aBgZILIdtA0r1zkJ5L8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"transtypeId\": \"EI\",\n    \"transtypeDescription\": \"Eat In\"\n}\n\n// {\n//     \"transtypeId\": \"TA\",\n//     \"transtypeDescription\": \"Take Away\"\n// }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/transtype",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"transtype"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "5. CREATE TRANS TYPE Unauthorized",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"transtypeId\": \"EI\",\n    \"transtypeDescription\": \"Eat In\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/discount",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"discount"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "5. READ TRANS TYPE Authorized",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJBcGlXbWJQb3MiLCJ1c2VybmFtZSI6ImFkbWluIiwiZW1haWwiOiJhZG1pbkB3bWIuY29tIn0.1BpkHjjNy307-QprKFfkY-p-aBgZILIdtA0r1zkJ5L8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/transtype",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"transtype"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "5. READ TRANS TYPE Unauthorized",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/transtype",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"transtype"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "6. REGISTER CUSTOMER Authorized",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJBcGlXbWJQb3MiLCJ1c2VybmFtZSI6ImFkbWluIiwiZW1haWwiOiJhZG1pbkB3bWIuY29tIn0.1BpkHjjNy307-QprKFfkY-p-aBgZILIdtA0r1zkJ5L8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"customerName\": \"Anak Pertama\",\n    \"customerPhone\": \"1111\"\n}\n\n// {\n//     \"customerName\": \"Anak Kedua\",\n//     \"customerPhone\": \"2222\"\n// }\n\n// {\n//     \"customerName\": \"Anak Pertama\",\n//     \"customerPhone\": \"3333\"\n// }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/customer",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"customer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "6. REGISTER CUSTOMER Unauthorized",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"customerName\": \"Anak Pertama\",\n    \"customerPhone\": \"1111\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/customer",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"customer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "7. MEMBER ACTIVATION Authorized",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJBcGlXbWJQb3MiLCJ1c2VybmFtZSI6ImFkbWluIiwiZW1haWwiOiJhZG1pbkB3bWIuY29tIn0.1BpkHjjNy307-QprKFfkY-p-aBgZILIdtA0r1zkJ5L8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"customerPhone\": \"1111\",\n\t\"discountId\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/customer",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"customer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "7. MEMBER ACTIVATION Unauthorized",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"customerPhone\": \"1111\",\n\t\"discountId\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/customer",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"customer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "8. CUSTOMER ORDER Authorized",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJBcGlXbWJQb3MiLCJ1c2VybmFtZSI6ImFkbWluIiwiZW1haWwiOiJhZG1pbkB3bWIuY29tIn0.1BpkHjjNy307-QprKFfkY-p-aBgZILIdtA0r1zkJ5L8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"customerId\": 1,\n    \"transtypeId\": \"EI\",\n    \"tableId\": 2,\n    \"billBillDetails\": [\n        {\n            \"menupriceId\": 1,\n            \"billdetailQty\": 2\n        },\n        {\n            \"menupriceId\": 2,\n            \"billdetailQty\": 2\n        }\n    ]\n}\n// {\n//     \"customerId\": 1,\n//     \"transtypeId\": \"EI\",\n//     \"tableId\": 1,\n//     \"billBillDetails\": [\n//         {\n//             \"menupriceId\": 2,\n//             \"billdetailQty\": 2\n//         }\n//     ]\n// }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/bill",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"bill"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "8. CUSTOMER ORDER Unauthorized",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"customerId\": 1,\n    \"transtypeId\": \"EI\",\n    \"tableId\": 1,\n    \"billBillDetails\": [\n        {\n            \"menupriceId\": 1,\n            \"billdetailQty\": 2\n        },\n        {\n            \"menupriceId\": 2,\n            \"billdetailQty\": 2\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/bill",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"bill"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "9. CUSTOMER PAYMENT Authorized",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJBcGlXbWJQb3MiLCJ1c2VybmFtZSI6ImFkbWluIiwiZW1haWwiOiJhZG1pbkB3bWIuY29tIn0.1BpkHjjNy307-QprKFfkY-p-aBgZILIdtA0r1zkJ5L8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"billId\":  1,\n    \"paymentMethod\": \"lopei\"\n}\n\n// {\n// \t\"billId\":  1,\n//     \"paymentMethod\": \"tunai\"\n// }\n\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/bill",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"bill"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "9. CUSTOMER PAYMENT Unuthorized",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJBcGlXbWJQb3MiLCJ1c2VybmFtZSI6ImFkbWluIiwiZW1haWwiOiJhZG1pbkB3bWIuY29tIn0.1BpkHjjNy307-QprKFfkY-p-aBgZILIdtA0r1zkJ5L8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"billId\":  1,\n    \"paymentMethod\": \"lopei\"\n}\n\n// {\n// \t\"billId\":  1,\n//     \"paymentMethod\": \"tunai\"\n// }\n\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/billdetail",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"billdetail"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "10. GET DAILY INCOME Authorized",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"billId\":  5,\n    \"paymentMethod\": \"lopei\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/bill",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"bill"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "10. GET DAILY INCOME Authorized Copy",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"billId\":  5,\n    \"paymentMethod\": \"lopei\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/billdetail",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"billdetail"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

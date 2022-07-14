@@ -1,0 +1,816 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>customer: Go Coverage Report</title>
+		<style>
+			body {
+				background: black;
+				color: rgb(80, 80, 80);
+			}
+			body, pre, #legend span {
+				font-family: Menlo, monospace;
+				font-weight: bold;
+			}
+			#topbar {
+				background: black;
+				position: fixed;
+				top: 0; left: 0; right: 0;
+				height: 42px;
+				border-bottom: 1px solid rgb(80, 80, 80);
+			}
+			#content {
+				margin-top: 50px;
+			}
+			#nav, #legend {
+				float: left;
+				margin-left: 10px;
+			}
+			#legend {
+				margin-top: 12px;
+			}
+			#nav {
+				margin-top: 10px;
+			}
+			#legend span {
+				margin: 0 5px;
+			}
+			.cov0 { color: rgb(192, 0, 0) }
+.cov1 { color: rgb(128, 128, 128) }
+.cov2 { color: rgb(116, 140, 131) }
+.cov3 { color: rgb(104, 152, 134) }
+.cov4 { color: rgb(92, 164, 137) }
+.cov5 { color: rgb(80, 176, 140) }
+.cov6 { color: rgb(68, 188, 143) }
+.cov7 { color: rgb(56, 200, 146) }
+.cov8 { color: rgb(44, 212, 149) }
+.cov9 { color: rgb(32, 224, 152) }
+.cov10 { color: rgb(20, 236, 155) }
+
+		</style>
+	</head>
+	<body>
+		<div id="topbar">
+			<div id="nav">
+				<select id="files">
+				
+				<option value="file0">livecode-wmb-2/usecase/customer/customer_registration_usecase.go (100.0%)</option>
+				
+				<option value="file1">livecode-wmb-2/usecase/customer/member_activation_usecase.go (84.0%)</option>
+				
+				<option value="file2">livecode-wmb-2/usecase/discount/create_discount_usecase.go (100.0%)</option>
+				
+				<option value="file3">livecode-wmb-2/usecase/discount/delete_discount_usecase.go (100.0%)</option>
+				
+				<option value="file4">livecode-wmb-2/usecase/discount/read_discount_usecase.go (100.0%)</option>
+				
+				<option value="file5">livecode-wmb-2/usecase/discount/update_discount_usecase.go (100.0%)</option>
+				
+				<option value="file6">livecode-wmb-2/usecase/menu/create_menu_usecase.go (100.0%)</option>
+				
+				<option value="file7">livecode-wmb-2/usecase/menu/delete_menu_usecase.go (100.0%)</option>
+				
+				<option value="file8">livecode-wmb-2/usecase/menu/read_menu_usecase.go (100.0%)</option>
+				
+				<option value="file9">livecode-wmb-2/usecase/menu/update_menu_usecase.go (100.0%)</option>
+				
+				<option value="file10">livecode-wmb-2/usecase/menu_price/create_menuprice_usecase.go (100.0%)</option>
+				
+				<option value="file11">livecode-wmb-2/usecase/menu_price/delete_menuprice_usecase.go (100.0%)</option>
+				
+				<option value="file12">livecode-wmb-2/usecase/menu_price/read_menuprice_usecase.go (100.0%)</option>
+				
+				<option value="file13">livecode-wmb-2/usecase/menu_price/update_menuprice_usecase.go (100.0%)</option>
+				
+				<option value="file14">livecode-wmb-2/usecase/table/create_table_usecase.go (100.0%)</option>
+				
+				<option value="file15">livecode-wmb-2/usecase/table/delete_table_usecase.go (100.0%)</option>
+				
+				<option value="file16">livecode-wmb-2/usecase/table/read_table_usecase.go (100.0%)</option>
+				
+				<option value="file17">livecode-wmb-2/usecase/table/update_table_usecase.go (100.0%)</option>
+				
+				<option value="file18">livecode-wmb-2/usecase/trans_type/create_transtype_usecase.go (100.0%)</option>
+				
+				<option value="file19">livecode-wmb-2/usecase/trans_type/delete_transtype_usecase.go (100.0%)</option>
+				
+				<option value="file20">livecode-wmb-2/usecase/trans_type/read_transtype_usecase.go (100.0%)</option>
+				
+				<option value="file21">livecode-wmb-2/usecase/trans_type/update_transtype_usecase.go (100.0%)</option>
+				
+				</select>
+			</div>
+			<div id="legend">
+				<span>not tracked</span>
+			
+				<span class="cov0">not covered</span>
+				<span class="cov8">covered</span>
+			
+			</div>
+		</div>
+		<div id="content">
+		
+		<pre class="file" id="file0" style="display: none">package customer_usecase
+
+import (
+        "livecode-wmb-2/model"
+        "livecode-wmb-2/repository"
+)
+
+type CustomerRegistrationUseCase interface {
+        CreateCustomer(customer []*model.Customer) error
+}
+
+type customerRegistrationUseCase struct {
+        customerRepo repository.CustomerRepository
+}
+
+func (c *customerRegistrationUseCase) CreateCustomer(customer []*model.Customer) error <span class="cov8" title="1">{
+        return c.customerRepo.Create(customer)
+}</span>
+
+func NewCustomerRegistrationUseCase(customerRepo repository.CustomerRepository) CustomerRegistrationUseCase <span class="cov8" title="1">{
+        usecase := new(customerRegistrationUseCase)
+        usecase.customerRepo = customerRepo
+        return usecase
+}</span>
+</pre>
+		
+		<pre class="file" id="file1" style="display: none">package customer_usecase
+
+import (
+        "errors"
+        "fmt"
+        "livecode-wmb-2/model"
+        "livecode-wmb-2/repository"
+        "livecode-wmb-2/utils"
+)
+
+type MemberActivationUseCase interface {
+        ActivateMember(phoneNumber string, discountId uint) (model.Customer, error)
+}
+
+type memberActivationUseCase struct {
+        custRepo     repository.CustomerRepository
+        discountRepo repository.DiscountRepository
+}
+
+func (m *memberActivationUseCase) ActivateMember(phoneNumber string, discountId uint) (model.Customer, error) <span class="cov8" title="1">{
+        by := map[string]interface{}{"mobile_phone_no": phoneNumber}
+        customerSlice, _ := m.custRepo.FindBy(by)
+        if len(customerSlice)==0 </span><span class="cov8" title="1">{
+                return model.Customer{}, utils.DataNotFoundError()
+        }</span>
+        <span class="cov8" title="1">customerSelected := customerSlice[0]
+        if customerSelected.IsMember </span><span class="cov8" title="1">{
+                return customerSelected, errors.New("nomor telepon tersebut sudah terdaftar sebagai member")
+        }</span>
+        <span class="cov8" title="1">err := m.custRepo.UpdateBy(&amp;customerSelected, map[string]interface{}{"is_member": true})
+        if err != nil </span><span class="cov0" title="0">{
+                fmt.Println("Aktivasi member gagal dilakukan.")
+                return model.Customer{}, err
+        }</span>
+        <span class="cov8" title="1">fmt.Println("Aktivasi member berhasil.")
+        // Belum selesai tambah discount
+        discountSlice, _ := m.discountRepo.FindBy(map[string]interface{}{"id": discountId})
+        err = m.custRepo.UpdateAssociation(&amp;customerSelected, "Discounts", &amp;discountSlice[0])
+        if err != nil </span><span class="cov0" title="0">{
+                fmt.Println("gagal menambahkan previlledge discount")
+        }</span>
+        <span class="cov8" title="1">customerSlice, err = m.custRepo.FindBy(by)
+        if err != nil </span><span class="cov0" title="0">{
+                return model.Customer{}, utils.DataNotFoundError()
+        }</span>
+        <span class="cov8" title="1">customerReturn := customerSlice[0]
+        return customerReturn, nil</span>
+}
+
+func NewMemberActivationUseCase(custRepo repository.CustomerRepository, discountRepo repository.DiscountRepository) MemberActivationUseCase <span class="cov8" title="1">{
+        usecase := new(memberActivationUseCase)
+        usecase.custRepo = custRepo
+        usecase.discountRepo = discountRepo
+        return usecase
+}</span>
+</pre>
+		
+		<pre class="file" id="file2" style="display: none">package discount_usecase
+
+import (
+        "livecode-wmb-2/model"
+        "livecode-wmb-2/repository"
+)
+
+type CreateDiscountUseCase interface {
+        CreateDiscount(dicsount []*model.Discount) error
+}
+
+type createDiscountUseCase struct {
+        dicsountRepo repository.DiscountRepository
+}
+
+func (m *createDiscountUseCase) CreateDiscount(dicsount []*model.Discount) error <span class="cov8" title="1">{
+        return m.dicsountRepo.Create(dicsount)
+}</span>
+
+func NewCreateDiscountUseCase(dicsountRepo repository.DiscountRepository) CreateDiscountUseCase <span class="cov8" title="1">{
+        usecase := new(createDiscountUseCase)
+        usecase.dicsountRepo = dicsountRepo
+        return usecase
+}</span>
+</pre>
+		
+		<pre class="file" id="file3" style="display: none">package discount_usecase
+
+import (
+        "livecode-wmb-2/model"
+        "livecode-wmb-2/repository"
+)
+
+type DeleteDiscountUseCase interface {
+        DeleteDiscount(discount *model.Discount) error
+}
+
+type deleteDiscountUseCase struct {
+        discountRepo repository.DiscountRepository
+}
+
+func (m *deleteDiscountUseCase) DeleteDiscount(discount *model.Discount) error <span class="cov8" title="1">{
+        return m.discountRepo.Delete(discount)
+}</span>
+
+func NewDeleteDiscountUseCase(discountRepo repository.DiscountRepository) DeleteDiscountUseCase <span class="cov8" title="1">{
+        usecase := new(deleteDiscountUseCase)
+        usecase.discountRepo = discountRepo
+        return usecase
+}</span>
+</pre>
+		
+		<pre class="file" id="file4" style="display: none">package discount_usecase
+
+import (
+        "livecode-wmb-2/model"
+        "livecode-wmb-2/repository"
+)
+
+type ReadDiscountUseCase interface {
+        ReadAllDiscount() ([]model.Discount, error)
+        ReadDiscountById(id uint) (model.Discount, error)
+        ReadDiscountBy(by map[string]interface{}) ([]model.Discount, error)
+}
+
+type readDiscountUseCase struct {
+        discountRepo repository.DiscountRepository
+}
+
+func (m *readDiscountUseCase) ReadAllDiscount() ([]model.Discount, error) <span class="cov8" title="1">{
+        return m.discountRepo.FindAll()
+}</span>
+
+func (m *readDiscountUseCase) ReadDiscountById(id uint) (model.Discount, error) <span class="cov8" title="1">{
+        discountSlice, err := m.discountRepo.FindBy(map[string]interface{}{"id": id})
+        if len(discountSlice) == 0 </span><span class="cov8" title="1">{
+                return model.Discount{}, err
+        }</span>
+        <span class="cov8" title="1">return discountSlice[0], err</span>
+}
+
+func (m *readDiscountUseCase) ReadDiscountBy(by map[string]interface{}) ([]model.Discount, error) <span class="cov8" title="1">{
+        return m.discountRepo.FindBy(by)
+}</span>
+
+func NewReadDiscountUseCase(discountRepo repository.DiscountRepository) ReadDiscountUseCase <span class="cov8" title="1">{
+        usecase := new(readDiscountUseCase)
+        usecase.discountRepo = discountRepo
+        return usecase
+}</span>
+</pre>
+		
+		<pre class="file" id="file5" style="display: none">package discount_usecase
+
+import (
+        "livecode-wmb-2/model"
+        "livecode-wmb-2/repository"
+)
+
+type UpdateDiscountUseCase interface {
+        UpdateDiscount(discount *model.Discount, by map[string]interface{}) error
+}
+
+type updateDiscountUseCase struct {
+        discountRepo repository.DiscountRepository
+}
+
+func (m *updateDiscountUseCase) UpdateDiscount(discount *model.Discount, by map[string]interface{}) error <span class="cov8" title="1">{
+        return m.discountRepo.UpdateBy(discount, by)
+}</span>
+
+func NewUpdateDiscountUseCase(discountRepo repository.DiscountRepository) UpdateDiscountUseCase <span class="cov8" title="1">{
+        usecase := new(updateDiscountUseCase)
+        usecase.discountRepo = discountRepo
+        return usecase
+}</span>
+</pre>
+		
+		<pre class="file" id="file6" style="display: none">package menu_usecase
+
+import (
+        "livecode-wmb-2/model"
+        "livecode-wmb-2/repository"
+)
+
+type CreateMenuUseCase interface {
+        CreateMenu(menu []*model.Menu) error
+}
+
+type createMenuUseCase struct {
+        menuRepo repository.MenuRepository
+}
+
+func (m *createMenuUseCase) CreateMenu(menu []*model.Menu) error <span class="cov8" title="1">{
+        return m.menuRepo.Create(menu)
+}</span>
+
+func NewCreateMenuUseCase(menuRepo repository.MenuRepository) CreateMenuUseCase <span class="cov8" title="1">{
+        usecase := new(createMenuUseCase)
+        usecase.menuRepo = menuRepo
+        return usecase
+}</span>
+</pre>
+		
+		<pre class="file" id="file7" style="display: none">package menu_usecase
+
+import (
+        "livecode-wmb-2/model"
+        "livecode-wmb-2/repository"
+)
+
+type DeleteMenuUseCase interface {
+        DeleteMenu(menu *model.Menu) error
+}
+
+type deleteMenuUseCase struct {
+        menuRepo repository.MenuRepository
+}
+
+func (m *deleteMenuUseCase) DeleteMenu(menu *model.Menu) error <span class="cov8" title="1">{
+        return m.menuRepo.Delete(menu)
+}</span>
+
+func NewDeleteMenuUseCase(menuRepo repository.MenuRepository) DeleteMenuUseCase <span class="cov8" title="1">{
+        usecase := new(deleteMenuUseCase)
+        usecase.menuRepo = menuRepo
+        return usecase
+}</span>
+</pre>
+		
+		<pre class="file" id="file8" style="display: none">package menu_usecase
+
+import (
+        "livecode-wmb-2/model"
+        "livecode-wmb-2/repository"
+)
+
+type ReadMenuUseCase interface {
+        ReadAllMenu() ([]model.Menu, error)
+        ReadMenuById(id uint) (model.Menu, error)
+        ReadMenuBy(by map[string]interface{}) ([]model.Menu, error)
+}
+
+type readMenuUseCase struct {
+        menuRepo repository.MenuRepository
+}
+
+func (m *readMenuUseCase) ReadAllMenu() ([]model.Menu, error) <span class="cov8" title="1">{
+        return m.menuRepo.FindAll()
+}</span>
+
+func (m *readMenuUseCase) ReadMenuById(id uint) (model.Menu, error) <span class="cov8" title="1">{
+        menuSlice, err := m.menuRepo.FindBy(map[string]interface{}{"id": id})
+        if len(menuSlice) == 0 </span><span class="cov8" title="1">{
+                return model.Menu{}, err
+        }</span>
+        <span class="cov8" title="1">return menuSlice[0], err</span>
+}
+
+func (m *readMenuUseCase) ReadMenuBy(by map[string]interface{}) ([]model.Menu, error) <span class="cov8" title="1">{
+        return m.menuRepo.FindBy(by)
+}</span>
+
+func NewReadMenuUseCase(menuRepo repository.MenuRepository) ReadMenuUseCase <span class="cov8" title="1">{
+        usecase := new(readMenuUseCase)
+        usecase.menuRepo = menuRepo
+        return usecase
+}</span>
+</pre>
+		
+		<pre class="file" id="file9" style="display: none">package menu_usecase
+
+import (
+        "livecode-wmb-2/model"
+        "livecode-wmb-2/repository"
+)
+
+type UpdateMenuUseCase interface {
+        UpdateMenu(menu *model.Menu, by map[string]interface{}) error
+}
+
+type updateMenuUseCase struct {
+        menuRepo repository.MenuRepository
+}
+
+func (m *updateMenuUseCase) UpdateMenu(menu *model.Menu, by map[string]interface{}) error <span class="cov8" title="1">{
+        return m.menuRepo.UpdateBy(menu, by)
+}</span>
+
+func NewUpdateMenuUseCase(menuRepo repository.MenuRepository) UpdateMenuUseCase <span class="cov8" title="1">{
+        usecase := new(updateMenuUseCase)
+        usecase.menuRepo = menuRepo
+        return usecase
+}</span>
+</pre>
+		
+		<pre class="file" id="file10" style="display: none">package menuprice_usecase
+
+import (
+        "livecode-wmb-2/model"
+        "livecode-wmb-2/repository"
+)
+
+type CreateMenuPriceUseCase interface {
+        CreateMenuPrice(menuPrice []*model.MenuPrice) error
+}
+
+type createMenuPriceUseCase struct {
+        menuPriceRepo repository.MenuPriceRepository
+}
+
+func (m *createMenuPriceUseCase) CreateMenuPrice(menuPrice []*model.MenuPrice) error <span class="cov8" title="1">{
+        return m.menuPriceRepo.Create(menuPrice)
+}</span>
+
+func NewCreateMenuPriceUseCase(menuPriceRepo repository.MenuPriceRepository) CreateMenuPriceUseCase <span class="cov8" title="1">{
+        usecase := new(createMenuPriceUseCase)
+        usecase.menuPriceRepo = menuPriceRepo
+        return usecase
+}</span>
+</pre>
+		
+		<pre class="file" id="file11" style="display: none">package menuprice_usecase
+
+import (
+        "livecode-wmb-2/model"
+        "livecode-wmb-2/repository"
+)
+
+type DeleteMenuPriceUseCase interface {
+        DeleteMenuPrice(menu *model.MenuPrice) error
+}
+
+type deleteMenuPriceUseCase struct {
+        menuPriceRepo repository.MenuPriceRepository
+}
+
+func (m *deleteMenuPriceUseCase) DeleteMenuPrice(menu *model.MenuPrice) error <span class="cov8" title="1">{
+        return m.menuPriceRepo.Delete(menu)
+}</span>
+
+func NewDeleteMenuPriceUseCase(menuPriceRepo repository.MenuPriceRepository) DeleteMenuPriceUseCase <span class="cov8" title="1">{
+        usecase := new(deleteMenuPriceUseCase)
+        usecase.menuPriceRepo = menuPriceRepo
+        return usecase
+}</span>
+</pre>
+		
+		<pre class="file" id="file12" style="display: none">package menuprice_usecase
+
+import (
+        "livecode-wmb-2/model"
+        "livecode-wmb-2/repository"
+)
+
+type ReadMenuPriceUseCase interface {
+        ReadAllMenuPrice() ([]model.MenuPrice, error)
+        ReadMenuPriceById(id uint) (model.MenuPrice, error)
+        ReadMenuPriceBy(by map[string]interface{}) ([]model.MenuPrice, error)
+}
+
+type readMenuPriceUseCase struct {
+        menuPriceRepo repository.MenuPriceRepository
+}
+
+func (m *readMenuPriceUseCase) ReadAllMenuPrice() ([]model.MenuPrice, error) <span class="cov8" title="1">{
+        return m.menuPriceRepo.FindAll()
+}</span>
+
+func (m *readMenuPriceUseCase) ReadMenuPriceById(id uint) (model.MenuPrice, error) <span class="cov8" title="1">{
+        menuPriceSlice, err := m.menuPriceRepo.FindBy(map[string]interface{}{"id": id})
+        if len(menuPriceSlice) == 0 </span><span class="cov8" title="1">{
+                return model.MenuPrice{}, err
+        }</span>
+        <span class="cov8" title="1">return menuPriceSlice[0], err</span>
+}
+
+func (m *readMenuPriceUseCase) ReadMenuPriceBy(by map[string]interface{}) ([]model.MenuPrice, error) <span class="cov8" title="1">{
+        return m.menuPriceRepo.FindBy(by)
+}</span>
+
+func NewReadMenuPriceUseCase(menuPriceRepo repository.MenuPriceRepository) ReadMenuPriceUseCase <span class="cov8" title="1">{
+        usecase := new(readMenuPriceUseCase)
+        usecase.menuPriceRepo = menuPriceRepo
+        return usecase
+}</span>
+</pre>
+		
+		<pre class="file" id="file13" style="display: none">package menuprice_usecase
+
+import (
+        "livecode-wmb-2/model"
+        "livecode-wmb-2/repository"
+)
+
+type UpdateMenuPriceUseCase interface {
+        UpdateMenuPrice(menuPrice *model.MenuPrice, by map[string]interface{}) error
+}
+
+type updateMenuPriceUseCase struct {
+        menuPriceRepo repository.MenuPriceRepository
+}
+
+func (m *updateMenuPriceUseCase) UpdateMenuPrice(menuPrice *model.MenuPrice, by map[string]interface{}) error <span class="cov8" title="1">{
+        return m.menuPriceRepo.UpdateBy(menuPrice, by)
+}</span>
+
+func NewUpdateMenuPriceUseCase(menuPriceRepo repository.MenuPriceRepository) UpdateMenuPriceUseCase <span class="cov8" title="1">{
+        usecase := new(updateMenuPriceUseCase)
+        usecase.menuPriceRepo = menuPriceRepo
+        return usecase
+}</span>
+</pre>
+		
+		<pre class="file" id="file14" style="display: none">package table_usecase
+
+import (
+        "livecode-wmb-2/model"
+        "livecode-wmb-2/repository"
+)
+
+type CreateTableUseCase interface {
+        CreateTable(table []*model.Table) error
+}
+
+type createTableUseCase struct {
+        tableRepo repository.TableRepository
+}
+
+func (m *createTableUseCase) CreateTable(table []*model.Table) error <span class="cov8" title="1">{
+        return m.tableRepo.Create(table)
+}</span>
+
+func NewCreateTableUseCase(tableRepo repository.TableRepository) CreateTableUseCase <span class="cov8" title="1">{
+        usecase := new(createTableUseCase)
+        usecase.tableRepo = tableRepo
+        return usecase
+}</span>
+</pre>
+		
+		<pre class="file" id="file15" style="display: none">package table_usecase
+
+import (
+        "livecode-wmb-2/model"
+        "livecode-wmb-2/repository"
+)
+
+type DeleteTableUseCase interface {
+        DeleteTable(table *model.Table) error
+}
+
+type deleteTableUseCase struct {
+        tableRepo repository.TableRepository
+}
+
+func (m *deleteTableUseCase) DeleteTable(table *model.Table) error <span class="cov8" title="1">{
+        return m.tableRepo.Delete(table)
+}</span>
+
+func NewDeleteTableUseCase(tableRepo repository.TableRepository) DeleteTableUseCase <span class="cov8" title="1">{
+        usecase := new(deleteTableUseCase)
+        usecase.tableRepo = tableRepo
+        return usecase
+}</span>
+</pre>
+		
+		<pre class="file" id="file16" style="display: none">package table_usecase
+
+import (
+        "livecode-wmb-2/model"
+        "livecode-wmb-2/repository"
+)
+
+type ReadTableUseCase interface {
+        ReadAllTable() ([]model.Table, error)
+        ReadTableById(id uint) (model.Table, error)
+        ReadTableBy(by map[string]interface{}) ([]model.Table, error)
+}
+
+type readTableUseCase struct {
+        tableRepo repository.TableRepository
+}
+
+func (m *readTableUseCase) ReadAllTable() ([]model.Table, error) <span class="cov8" title="1">{
+        return m.tableRepo.FindAll()
+}</span>
+
+func (m *readTableUseCase) ReadTableById(id uint) (model.Table, error) <span class="cov8" title="1">{
+        tableSlice, err := m.tableRepo.FindBy(map[string]interface{}{"id": id})
+        if len(tableSlice) == 0 </span><span class="cov8" title="1">{
+                return model.Table{}, err
+        }</span>
+        <span class="cov8" title="1">return tableSlice[0], err</span>
+}
+
+func (m *readTableUseCase) ReadTableBy(by map[string]interface{}) ([]model.Table, error) <span class="cov8" title="1">{
+        return m.tableRepo.FindBy(by)
+}</span>
+
+func NewReadTableUseCase(tableRepo repository.TableRepository) ReadTableUseCase <span class="cov8" title="1">{
+        usecase := new(readTableUseCase)
+        usecase.tableRepo = tableRepo
+        return usecase
+}</span>
+</pre>
+		
+		<pre class="file" id="file17" style="display: none">package table_usecase
+
+import (
+        "livecode-wmb-2/model"
+        "livecode-wmb-2/repository"
+)
+
+type UpdateTableUseCase interface {
+        UpdateTable(table *model.Table, by map[string]interface{}) error
+}
+
+type updateTableUseCase struct {
+        tableRepo repository.TableRepository
+}
+
+func (m *updateTableUseCase) UpdateTable(table *model.Table, by map[string]interface{}) error <span class="cov8" title="1">{
+        return m.tableRepo.UpdateBy(table, by)
+}</span>
+
+func NewUpdateTableUseCase(tableRepo repository.TableRepository) UpdateTableUseCase <span class="cov8" title="1">{
+        usecase := new(updateTableUseCase)
+        usecase.tableRepo = tableRepo
+        return usecase
+}</span>
+</pre>
+		
+		<pre class="file" id="file18" style="display: none">package transtype_usecase
+
+import (
+        "livecode-wmb-2/model"
+        "livecode-wmb-2/repository"
+)
+
+type CreateTransTypeUseCase interface {
+        CreateTransType(transType []*model.TransType) error
+}
+
+type createTransTypeUseCase struct {
+        transTypeRepo repository.TransTypeRepository
+}
+
+func (m *createTransTypeUseCase) CreateTransType(transType []*model.TransType) error <span class="cov8" title="1">{
+        return m.transTypeRepo.Create(transType)
+}</span>
+
+func NewCreateTransTypeUseCase(transTypeRepo repository.TransTypeRepository) CreateTransTypeUseCase <span class="cov8" title="1">{
+        usecase := new(createTransTypeUseCase)
+        usecase.transTypeRepo = transTypeRepo
+        return usecase
+}</span>
+</pre>
+		
+		<pre class="file" id="file19" style="display: none">package transtype_usecase
+
+import (
+        "livecode-wmb-2/model"
+        "livecode-wmb-2/repository"
+)
+
+type DeleteTransTypeUseCase interface {
+        DeleteTransType(transType *model.TransType) error
+}
+
+type deleteTransTypeUseCase struct {
+        transTypeRepo repository.TransTypeRepository
+}
+
+func (m *deleteTransTypeUseCase) DeleteTransType(transType *model.TransType) error <span class="cov8" title="1">{
+        return m.transTypeRepo.Delete(transType)
+}</span>
+
+func NewDeleteTransTypeUseCase(transTypeRepo repository.TransTypeRepository) DeleteTransTypeUseCase <span class="cov8" title="1">{
+        usecase := new(deleteTransTypeUseCase)
+        usecase.transTypeRepo = transTypeRepo
+        return usecase
+}</span>
+</pre>
+		
+		<pre class="file" id="file20" style="display: none">package transtype_usecase
+
+import (
+        "livecode-wmb-2/model"
+        "livecode-wmb-2/repository"
+)
+
+type ReadTransTypeUseCase interface {
+        ReadAllTransType() ([]model.TransType, error)
+        ReadTransTypeById(id string) (model.TransType, error)
+        ReadTransTypeBy(by map[string]interface{}) ([]model.TransType, error)
+}
+
+type readTransTypeUseCase struct {
+        transTypeRepo repository.TransTypeRepository
+}
+
+func (m *readTransTypeUseCase) ReadAllTransType() ([]model.TransType, error) <span class="cov8" title="1">{
+        return m.transTypeRepo.FindAll()
+}</span>
+
+func (m *readTransTypeUseCase) ReadTransTypeById(id string) (model.TransType, error) <span class="cov8" title="1">{
+        transTypeSlice, err := m.transTypeRepo.FindBy(map[string]interface{}{"id": id})
+        if len(transTypeSlice) == 0 </span><span class="cov8" title="1">{
+                return model.TransType{}, err
+        }</span>
+        <span class="cov8" title="1">return transTypeSlice[0], err</span>
+}
+
+func (m *readTransTypeUseCase) ReadTransTypeBy(by map[string]interface{}) ([]model.TransType, error) <span class="cov8" title="1">{
+        return m.transTypeRepo.FindBy(by)
+}</span>
+
+func NewReadTransTypeUseCase(transTypeRepo repository.TransTypeRepository) ReadTransTypeUseCase <span class="cov8" title="1">{
+        usecase := new(readTransTypeUseCase)
+        usecase.transTypeRepo = transTypeRepo
+        return usecase
+}</span>
+</pre>
+		
+		<pre class="file" id="file21" style="display: none">package transtype_usecase
+
+import (
+        "livecode-wmb-2/model"
+        "livecode-wmb-2/repository"
+)
+
+type UpdateTransTypeUseCase interface {
+        UpdateTransType(transType *model.TransType, by map[string]interface{}) error
+}
+
+type updateTransTypeUseCase struct {
+        transTypeRepo repository.TransTypeRepository
+}
+
+func (m *updateTransTypeUseCase) UpdateTransType(transType *model.TransType, by map[string]interface{}) error <span class="cov8" title="1">{
+        return m.transTypeRepo.UpdateBy(transType, by)
+}</span>
+
+func NewUpdateTransTypeUseCase(transTypeRepo repository.TransTypeRepository) UpdateTransTypeUseCase <span class="cov8" title="1">{
+        usecase := new(updateTransTypeUseCase)
+        usecase.transTypeRepo = transTypeRepo
+        return usecase
+}</span>
+</pre>
+		
+		</div>
+	</body>
+	<script>
+	(function() {
+		var files = document.getElementById('files');
+		var visible;
+		files.addEventListener('change', onChange, false);
+		function select(part) {
+			if (visible)
+				visible.style.display = 'none';
+			visible = document.getElementById(part);
+			if (!visible)
+				return;
+			files.value = part;
+			visible.style.display = 'block';
+			location.hash = part;
+		}
+		function onChange() {
+			select(files.value);
+			window.scrollTo(0, 0);
+		}
+		if (location.hash != "") {
+			select(location.hash.substr(1));
+		}
+		if (!visible) {
+			select("file0");
+		}
+	})();
+	</script>
+</html>

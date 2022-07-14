@@ -41,7 +41,7 @@ func (c *customerPaymentUseCase) OrderPayment(billId uint, paymentMethod string)
 			grandTotal += billDetail.MenuPrice.Price*billDetail.Qty
 		}
 		if billSlice[0].Customer.IsMember {
-			grandTotal = grandTotal*float32(100-billSlice[0].Customer.Discounts[0].Pct)
+			grandTotal = grandTotal*float32(100-billSlice[0].Customer.Discounts[0].Pct)/100
 			fmt.Println(grandTotal)
 		}
 		if err := c.billRepo.LopeiPayment(int32(billSlice[0].Customer.ID), grandTotal); err != nil {

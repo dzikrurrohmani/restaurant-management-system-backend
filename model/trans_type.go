@@ -8,7 +8,7 @@ import (
 type TransType struct {
 	ID          string `gorm:"primaryKey" json:"transtypeId"`
 	Description string `json:"transtypeDescription"`
-	Bills       []Bill `json:"transtypeBills"`
+	Bills       []Bill `json:"-"`
 }
 
 func (TransType) TableName() string {
