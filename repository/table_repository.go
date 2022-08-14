@@ -2,6 +2,7 @@ package repository
 
 import (
 	"errors"
+	"fmt"
 	"livecode-wmb-2/model"
 
 	"gorm.io/gorm"
@@ -19,6 +20,7 @@ type tableRepository struct {
 }
 
 func (m *tableRepository) Create(table []*model.Table) error {
+	fmt.Println(table[0].IsAvailable)
 	result := m.db.Create(table)
 	return result.Error
 }

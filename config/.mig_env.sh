@@ -4,5 +4,5 @@ export DB_HOST=localhost
 export DB_PORT=5432
 export DB_USER=dzikrurrohmani
 export DB_PASSWORD=password
-export DB_NAME=livecode_wmb_api_pos
+export DB_NAME=db_fullstack_first
 export DB_VENV=migration

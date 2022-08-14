@@ -23,8 +23,8 @@ func (p *LoginController) appLogin(c *gin.Context) {
 		return
 	}
 
-	if user.Username == "admin" && user.Password == "admin" {
-		token, err := middleware.GenerateToken(user.Username, "admin@wmb.com")
+	if user.Username == "admin@example.com" && user.Password == "12345678" {
+		token, err := middleware.GenerateToken(user.Username, "admin@example.com")
 		if err != nil {
 			c.AbortWithStatus(401)
 			return

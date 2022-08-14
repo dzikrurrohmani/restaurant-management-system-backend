@@ -1,6 +1,7 @@
 package controller
 
 import (
+	"fmt"
 	"livecode-wmb-2/delivery/api"
 	"livecode-wmb-2/model"
 	table_usecase "livecode-wmb-2/usecase/table"
@@ -26,6 +27,7 @@ func (p *TableController) createNewTable(c *gin.Context) {
 		p.Failed(c, utils.RequiredError())
 		return
 	}
+	fmt.Println(newTable)
 	err = p.ucTableCreate.CreateTable([]*model.Table{&newTable})
 	if err != nil {
 		p.Failed(c, err)
